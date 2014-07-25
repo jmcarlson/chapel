@@ -26,6 +26,27 @@ block content
 		form(class='form-inline user-form' role='form' method='post')
 		//- User defined inputs form
 		#user-fields-form.col-md-12
+			.col-md-4
+				h4 Example Inputs
+				form(class='form-horizontal user-fields' role='form')
+				p Text box
+				input(type='email' class='form-control' id='email' placeholder='Text')
+				p Textarea
+				input(type='textarea' class='form-control' rows='3')
+				p Checkbox
+				.input-group
+					.input-group-addon
+						input(type='checkbox', name='check1')
+						| Red
+						input(type='checkbox', name='check2')
+						| Blue
+				p Radio
+				.input-group
+					.input-group-addon
+						input(type='radio' name='radio-group1') 
+						| Red
+						input(type='radio' name='radio-group1')
+						| Blue
 		//- Primary/core data rows
 		.rows.primary
 			each object in leadsData
@@ -37,13 +58,13 @@ block content
 					#leadPhone.col-xs-12.col-sm-1.col-md-2 #{object.phone}
 				.debug1.user-data(data-id='#{object.id}')
 					.debug2.col-xs-4.col-sm-4.col-md-2 First name
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.fname}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.fname}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Last name
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.lname}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.lname}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Email
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.email}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.email}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Phone
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.phone}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.phone}
 					for property in object
 						p= property
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')

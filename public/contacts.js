@@ -172,16 +172,10 @@ var renderData = function(arrData) {
 //
 $(document).on('ready', function() {
 
-	//
-	// Entry point
-	//
-	// renderInputs();
-	// renderData(leadsData.sort(compareId));
 	$('.user-data').hide();
 	$('.user-form').hide();
-	//$('.user-fields').hide();
 	$('.inputs-form').hide();
-	$('#user-fields-form').hide();
+	//$('#user-fields-form').hide();
 	$('.internal-eval').hide();
 
 	//
