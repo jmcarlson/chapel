@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+  	<title>Chapel v2</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://summer2014-refactoru-students.herokuapp.com/public/fontello/css/fontello.css">
+	<link rel="stylesheet" href="contacts.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header h3">Contacts
+<button id="home" type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-home"></span> Home
+</button>
+<!-- <button type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-plus"></span> Add
+</button>
+ --><button id="settings" type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-cog"></span> User Fields
+</button>
+<button id="internal" type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-tint"></span> Todo
+</button>
+</div>
+
+<div id="internal" class="h5 internal-eval">Todo:
+  <ul>
+    <li> Introduce revealing module pattern </li>
+    <li> Complete user defined inputs; checkbox, radio buttons</li>
+    <li> Add graphic to indicate sort order</li>
+    <li> Add validations galore...</li>
+    <li> Re-evaluate user defined inputs as required</li>
+	<li> Add ability to remove/edit user inputs</li>
+	<li> Fix save button bug</li>
+  </ul>
+</div>
+
+<form class="form-inline core-form" role="form">
+  <div id="form-icon" class="icon-inline icon-down-open"></div>
+  <div class="form-group">
+    <label class="sr-only" for="fname">First Name</label>
+    <input type="text" class="form-control" id="fname" placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="lname">Last Name</label>
+    <input type="text" class="form-control" id="lname" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="phone">Password</label>
+    <input type="text" class="form-control" id="phone" placeholder="Phone">
+  </div>
+  <button type="submit" class="btn btn-default">Add Contact</button>
+</form>
+
+<form class="form-inline user-form" role="form"></form>
+
+
+<!-- Placeholder for user fields form -->
+
+<div id="user-fields-form" class="col-md-12">
+  <div class="col-md-4">
+    <div class="h4">Example Inputs</div>
+    <form class="form-horizontal user-fields" role="form">
+    <p>Text box</p>
+    <label class="sr-only" for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Text">
+
+    <p>Textarea</p>
+    <textarea class="form-control" rows="3"></textarea>
+
+
+    <p>Checkbox1</p>
+    <div class="">
+      <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" name="check1" value="option1"> Option 1
+        <input type="checkbox" name="check2" value="option2"> Option 2
+      </span>
+      <!-- <input type="text" class="form-control"> -->
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+
+    <p>Radio</p>
+    <div class="">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <input type="radio" name="radio-grp1" value="rad1"> Radio 1
+          <input type="radio" name="radio-grp1" value="rad2"> Radio 2
+        </span>
+        <!-- <input type="text" class="form-control"> -->
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</form>
+
+</div>
+	<div class="custom-inputs col-md-7">
+		<div class="h4">Add Custom Inputs</div>
+
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Select input type
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation"><a id="dropdown-textbox" role="menuitem" tabindex="-1" href="#">Text box</a></li>
+				<li role="presentation"><a id="dropdown-checkbox" role="menuitem" tabindex="-1" href="#">Checkbox</a></li>
+      </ul>
+      <button id="inputs-form-add" type="button" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-plus"></span> Add
+      </button>
+		</div>
+
+		<!--Inputs form here -->
+		<form class="form-horizontal inputs-form inputs-textbox" role="form">
+			<label class="sr-only" for="inputs-textbox-name">textbox</label>
+			<input type="text" class="form-control" id="inputs-textbox-name" placeholder="Enter name of text box">
+		</form>
+		<form class="form-horizontal inputs-form inputs-textarea" role="form">
+			<label class="sr-only" for="email">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter name of text area">
+		</form>
+		<form class="form-horizontal inputs-form inputs-checkbox" role="form">
+			<label class="sr-only" for="email">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter name of checkbox">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 1">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 2">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 3">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 4">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 5">
+			<input type="email" class="form-control checkbox-value" id="email" placeholder="Enter checkbox value 6">
+		</form>
+		<form class="form-horizontal inputs-form inputs-radio" role="form">
+			<label class="sr-only" for="email">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter name of radio button group">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 1">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 2">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 3">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 4">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 5">
+			<input type="email" class="form-control radio-value" id="email" placeholder="Enter radio value 6">
+		</form>
+
+	</div>
+</div>
+
+<p>
+
+<!-- <p class="h4">Option 1 View</p> -->
+<div class="rows primary"></div>
+
+<!-- <p class="h4">Option 2 View</p>
+<div class="rows alt"></div>
+ -->
+</div>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="contacts.js"></script>
+<script src="contacts-data-small.js"></script>
+<script src="contacts-user-fields.js"></script>
+</body>
+</html>

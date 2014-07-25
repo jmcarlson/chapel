@@ -1,4 +1,34 @@
 extends layout
 
 block content
-	h1 Hello Boulder!
+	.container
+		//- Header menu
+		.page-header.h3 Contacts 
+			button(id='home' type='button' class='btn btn-default btn-sm')
+				.glyphicon.glyphicon-home  Home
+			button(id='settings' type='button' class='btn btn-default btn-sm')
+				.glyphicon.glyphicon-cog  User Fields
+			button(id='internal' type='button' class='btn btn-default btn-sm')
+				.glyphicon.glyphicon-tint  Todo
+		//- Core form
+		form(class='form-inline core-form' role='form' method='post')
+			#form-icon.icon-inline.icon-down-open
+			.form-group
+				input(type='text' class='form-control' id='fname' placeholder='First Name')
+			.form-group
+				input(type='text' class='form-control' id='lname' placeholder='Last Name')
+			.form-group
+				input(type='text' class='form-control' id='email' placeholder='Email')
+			.form-group
+				input(type='text' class='form-control' id='phone' placeholder='Phone')
+			button(type='submit' class='btn btn-default') Add Contact
+		//- Custom user form
+		form(class='form-inline user-form' role='form' method='post')
+		//- User defined inputs form
+		#user-fields-form.col-md-12
+		//- Primary/core data rows
+		.rows.primary
+	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')
+	script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+	script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
+	//- script(src='http://localhost:3000/contacts.js')

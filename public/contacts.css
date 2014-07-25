@@ -1,0 +1,85 @@
+.debug1 {
+	border: 1px solid LightGray;
+}
+
+.debug2 {
+	/*border: 1px dotted LightGray;*/
+}
+
+.icon-inline {
+	display: inline-block;
+	font-size: 32px;
+	vertical-align: middle;
+}
+
+.icon-down-open {
+	font-size: 18px;
+}
+
+.icon-up-open {
+	font-size: 18px;	
+}
+
+.icon-emo-squint {
+	color: white;
+	font-size: 20px;
+}
+
+.icon-menu {
+	color: Gray;
+	font-size: 18px;
+}
+
+.rows {
+	line-height: 30px;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.rows > div {
+	/*vertical-align: middle*/;
+}
+
+.core-data > div {
+	cursor: default;
+	/*background: linear-gradient(#F8F8F8, white);*/
+}
+
+#inputs-form-add {
+	display: none;
+}
+
+.user-form {
+	margin-top: 10px;
+}
+
+#user-fields-form {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border: 1px solid LightGray;
+}
+
+.custom-inputs {
+	border-left: 1px dotted LightGray;
+	height: 100%;
+}
+
+.detail-item-delete {
+	background-color: LightGray;
+}
+
+.detail-item-save {
+	background-color: LightGray;
+	display: none;
+}
+
+.form-control {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.user-checkbox {
+	/*border: 1px solid LightGray;*/
+}
+
