@@ -31,4 +31,5 @@ userInputs.push({
 	id: '2', name: 'ui2', label: 'Birthday', type: 'text', size: '10' 
 });
 
+module.exports = userInputs;
 

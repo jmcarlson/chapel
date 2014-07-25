@@ -1,5 +1,5 @@
-var userInputs = require('../models/contacts-user-fields.js');
-var leadsData = require('../models/contacts-data-small.js');
+// var userInputs = require('../models/contacts-user-fields.js');
+// var leadsData = require('../models/contacts-data-small.js');
 //
 // Helper functions
 //
@@ -175,8 +175,9 @@ $(document).on('ready', function() {
 	//
 	// Entry point
 	//
-	renderInputs();
-	renderData(leadsData.sort(compareId));
+	// renderInputs();
+	// renderData(leadsData.sort(compareId));
+	$('.user-data').hide();
 	$('.user-form').hide();
 	//$('.user-fields').hide();
 	$('.inputs-form').hide();

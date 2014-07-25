@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var userInputs = require('./models/contacts-user-fields.js');
+var leadsData = require('./models/contacts-data-small.js');
 
 var app = express();
 app.set('view engine', 'jade');
@@ -10,8 +12,11 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.get('/', function(req, res) {
-	res.render('index');
+app.get('/crm', function(req, res) {
+	res.render('index', {
+		userInputs: userInputs,
+		leadsData: leadsData
+	});
 });
 
 var server = app.listen(3000, function() {

@@ -28,7 +28,25 @@ block content
 		#user-fields-form.col-md-12
 		//- Primary/core data rows
 		.rows.primary
+			each object in leadsData
+				.debug1.core-data.col-xs-12.col-sm-12.col-md-12(data-id='#{object.id}')
+					.icon-inline.icon-menu.col-xs-12.col-sm.1.col-md-1
+					#leadFirstName.col-xs-12.col-sm-1.col-md-2 #{object.fname}
+					#leadLastName.col-xs-12.col-sm-1.col-md-2 #{object.lname}
+					#leadEmail.col-xs-12.col-sm-1.col-md-3 #{object.email}
+					#leadPhone.col-xs-12.col-sm-1.col-md-2 #{object.phone}
+				.debug1.user-data(data-id='#{object.id}')
+					.debug2.col-xs-4.col-sm-4.col-md-2 First name
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.fname}
+					.debug2.col-xs-4.col-sm-4.col-md-2 Last name
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.lname}
+					.debug2.col-xs-4.col-sm-4.col-md-2 Email
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.email}
+					.debug2.col-xs-4.col-sm-4.col-md-2 Phone
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data #{object.phone}
+					for property in object
+						p= property
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')
 	script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
-	//- script(src='http://localhost:3000/contacts.js')
+	script(src='http://localhost:3000/contacts.js')

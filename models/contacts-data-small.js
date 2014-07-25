@@ -1,6 +1,20 @@
 // Define array for basic data
 var leadsData = [];
 
+// Process contact data and user input data before the view
+// example objects:
+// [
+//    {
+//      title: "First Name",
+//      value: "Chris"
+//    },
+//    {
+//      title: "Hometown",
+//      value: "Boulder"
+//    }
+// ]
+
+
 // Populate test data
 leadsData.push({
 	id: '1', fname: 'Jon', lname: 'Carlson', email: 'jon@gmail.com', phone: '999-999-9999',
@@ -27,5 +41,5 @@ leadsData.push({
 	ui2: 'April', ui1: 'Palm Harbor, FL'
 });
 
-
+module.exports = leadsData;
 
