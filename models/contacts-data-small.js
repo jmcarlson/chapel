@@ -15,6 +15,16 @@ var leadsData = [];
 //      value: "Boulder"
 //    }
 // ]
+//
+// Data
+// [ {_id, cd01, cd02, cd03, cd04, ud01, ud02, udxx} ]
+// Labels
+// [ {_id, cd01: 'First Name', cd02: 'Last Name', cd03: 'Email', cd04: 'Phone',
+//     ud01: 'Hometown', ud02: 'Birthday'} ]
+// Inputs
+// [ {id: '1', name: 'ud01', type: 'text', size: '10'},
+//   {id: '2', name: 'ud02', type: 'text', size: '10'} ]
+
 
 
 // Populate test data
