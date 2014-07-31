@@ -1,0 +1,1 @@
+mongoimport -h localhost -d chapel -c leads -file seed-data.json --jsonArray

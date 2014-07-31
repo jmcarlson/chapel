@@ -8,22 +8,17 @@ block content
 				.glyphicon.glyphicon-home  Home
 			button(id='settings' type='button' class='btn btn-default btn-sm')
 				.glyphicon.glyphicon-cog  User Fields
-			button(id='internal' type='button' class='btn btn-default btn-sm')
-				.glyphicon.glyphicon-tint  Todo
-		//- Core form
-		form(class='form-inline core-form' role='form' method='post')
-			#form-icon.icon-inline.icon-down-open
-			.form-group
-				input(type='text' class='form-control' id='fname' placeholder='First Name')
-			.form-group
-				input(type='text' class='form-control' id='lname' placeholder='Last Name')
-			.form-group
-				input(type='text' class='form-control' id='email' placeholder='Email')
-			.form-group
-				input(type='text' class='form-control' id='phone' placeholder='Phone')
-			button(type='submit' class='btn btn-default') Add Contact
-		//- Custom user form
-		form(class='form-inline user-form' role='form' method='post')
+			button(id='tools' type='button' class='btn btn-default btn-sm')
+				.glyphicon.glyphicon-wrench  Tools
+		//- Tools form
+		h5.tools
+			p Export contacts to CSV
+				input(id='csvexp' type='file' name='csvexp' class='btn btn-default')
+			p Import contacts using CSV file
+				input(id='csvimp' type='file' name='csvimp' class='btn btn-default')
+			p Create PDF
+				button(id='pdfgen' type='file' class='btn btn-default')
+					.glyphicon.glyphicon-print  PDF
 		//- User defined inputs form
 		#user-fields-form.col-md-12
 			.col-md-4
@@ -47,26 +42,40 @@ block content
 						| Red
 						input(type='radio' name='radio-group1')
 						| Blue
+		//- Core form
+		form(class='form-inline core-form' role='form' method='post')
+			#form-icon.icon-inline.icon-down-open
+			.form-group
+				input(type='text' class='form-control' id='cd01' placeholder='First Name')
+			.form-group
+				input(type='text' class='form-control' id='cd02' placeholder='Last Name')
+			.form-group
+				input(type='text' class='form-control' id='cd03' placeholder='Email')
+			.form-group
+				input(type='text' class='form-control' id='cd04' placeholder='Phone')
+			button(type='submit' class='btn btn-default') Add Contact
+		//- Custom user form
+		form(class='form-inline user-form' role='form' method='post')
 		//- Primary/core data rows
 		.rows.primary
 			each object in leadsData
 				.debug1.core-data.col-xs-12.col-sm-12.col-md-12(data-id='#{object.id}')
 					.icon-inline.icon-menu.col-xs-12.col-sm.1.col-md-1
-					#leadFirstName.col-xs-12.col-sm-1.col-md-2 #{object.fname}
-					#leadLastName.col-xs-12.col-sm-1.col-md-2 #{object.lname}
-					#leadEmail.col-xs-12.col-sm-1.col-md-3 #{object.email}
-					#leadPhone.col-xs-12.col-sm-1.col-md-2 #{object.phone}
+					#leadFirstName.col-xs-12.col-sm-1.col-md-2 #{object.cd01}
+					#leadLastName.col-xs-12.col-sm-1.col-md-2 #{object.cd02}
+					#leadEmail.col-xs-12.col-sm-1.col-md-3 #{object.cd03}
+					#leadPhone.col-xs-12.col-sm-1.col-md-2 #{object.cd04}
 				.debug1.user-data(data-id='#{object.id}')
 					.debug2.col-xs-4.col-sm-4.col-md-2 First name
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.fname}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd01}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Last name
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.lname}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd02}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Email
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.email}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd03}
 					.debug2.col-xs-4.col-sm-4.col-md-2 Phone
-					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.phone}
-					for property in object
-						p= property
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd04}
+					//-for property in object
+					//-	p= property
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')
 	script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')

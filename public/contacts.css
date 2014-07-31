@@ -83,3 +83,6 @@
 	/*border: 1px solid LightGray;*/
 }
 
+.tools > button {
+	display: block;
+}

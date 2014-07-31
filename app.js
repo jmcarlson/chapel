@@ -1,8 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var userInputs = require('./models/contacts-user-fields.js');
 var leadsData = require('./models/contacts-data-small.js');
-var controller = require('./controllers/index.js');
+var controller = require('./controllers/main.js');
+
+mongoose.connect('mongodb://localhost/chapel');
 
 var app = express();
 app.set('view engine', 'jade');
@@ -14,12 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/crm', controller.index);
-// app.get('/crm', function(req, res) {
-// 	res.render('index', {
-// 		userInputs: userInputs,
-// 		leadsData: leadsData
-// 	});
-// });
+app.post('/write', controller.write);
 
 var server = app.listen(3000, function() {
 	console.log('Express server listening on port ' + server.address().port);

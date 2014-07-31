@@ -1,5 +1,6 @@
 // var userInputs = require('../models/contacts-user-fields.js');
 // var leadsData = require('../models/contacts-data-small.js');
+// var Lead = require('../models/lead.js');
 //
 // Helper functions
 //
@@ -175,8 +176,9 @@ $(document).on('ready', function() {
 	$('.user-data').hide();
 	$('.user-form').hide();
 	$('.inputs-form').hide();
-	//$('#user-fields-form').hide();
+	$('#user-fields-form').hide();
 	$('.internal-eval').hide();
+	$('.tools').hide();
 
 	//
 	// Event handlers
@@ -190,12 +192,12 @@ $(document).on('ready', function() {
 	});
 
 	// Internal only
-	$(document).on('click', '#internal', function(e) {
-		if( $('.internal-eval').is(':hidden') ) {
-			$('.internal-eval').show();
+	$(document).on('click', '#tools', function(e) {
+		if( $('.tools').is(':hidden') ) {
+			$('.tools').show();
 		}
 		else {
-			$('.internal-eval').hide();
+			$('.tools').hide();
 		}
 
 	});
@@ -228,23 +230,46 @@ $(document).on('ready', function() {
 		}
 	})
 
+// MongoDB/Mongoose enabled
 	$('.core-form').on('submit', function(e) {
 		e.preventDefault();
 
-		var coreFormData = $('.core-form').find('[class=form-control]');
+		// Extract form data
+		var formData = $('.form-group').find('[class=form-control]');
 
-		var testFormData3 = $('.form-group').find('[class=form-control]');
-		leadsData.push({id: nextLeadId().toString()});
-		var temp = _.last(leadsData);
+		// Create temporary object for AJAX call
+		var temp = {};
+	 	for (var i = 0; i < formData.length; i++) {
+	 		if(formData[i].value) {
+	 			temp[formData[i].id] = formData[i].value;
+	 		}
+	 	};
+		console.log(temp);
 
-		for (var i = 0; i < testFormData3.length; i++) {
-			if(testFormData3[i].value) {
-				temp[testFormData3[i].id] = testFormData3[i].value;
-			}
-		};
-		renderInputs();
-		renderData(leadsData);
+		// Add contact data to database
+		$.post('/write', temp, function() {
+
+		});
 	});
+
+// Old version; Client only prototype
+	// $('.core-form').on('submit', function(e) {
+	// 	e.preventDefault();
+
+	// 	var coreFormData = $('.core-form').find('[class=form-control]');
+
+	// 	var testFormData3 = $('.form-group').find('[class=form-control]');
+	// 	leadsData.push({id: nextLeadId().toString()});
+	// 	var temp = _.last(leadsData);
+
+	// 	for (var i = 0; i < testFormData3.length; i++) {
+	// 		if(testFormData3[i].value) {
+	// 			temp[testFormData3[i].id] = testFormData3[i].value;
+	// 		}
+	// 	};
+	// 	renderInputs();
+	// 	renderData(leadsData);
+	// });
 
 	$(document).on('click', '#settings', function(e) {
 		if( $('#user-fields-form').is(':hidden') ) {
