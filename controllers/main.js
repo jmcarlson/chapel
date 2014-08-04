@@ -42,12 +42,14 @@ var controller = {
 				res.send(500);
 			}
 			else {
+
 				// Debug code only; remove
 				if(typeof results[0][0] === 'object') { console.log('Object!!!'); }
+				//console.log(results);
 				//var temp = results[0][0].toObject();
 				var temp = results[0][0];
-				console.log('temp lang is ', temp.lang);
 				console.log(temp);
+				console.log('temp lang is ', temp.lang);
 				for (xyz in temp) { console.log(xyz); }
 				// End of debug code
 
