@@ -1,30 +1,77 @@
+var async = require('async');
 var leadsData = require('../models/contacts-data-small.js');
 var userInputs = require('../models/contacts-user-fields.js');
 var Lead = require('../models/lead.js');
+var Label = require('../models/label.js');
 
 var controller = {
 
 	index: function(req, res) {
-		//res.render('index', {
-		//	userInputs: userInputs,
-		//	leadsData: leadsData
-		//});
-		// res.send('controller.index called');
 
-		// New logic to use database
-		Lead.find({}, function(error, results) {
+		// Non-async func to pull leads data
+	// 	Lead.find({}, function(error, results) {
+	// 		if(error) {
+	// 			console.log(error);
+	// 		}
+	// 		else {
+	// 			console.log(results);
+	// 			res.render('index', {
+	// 				userInputs: userInputs,
+	// 				leadsData: results
+	// 			})
+	// 		}
+	// 	})
+
+		// Async.series mechanism for database
+		// queries; leads and label data
+		async.series([
+
+			// Extract label data
+			function(callback) {
+				Label.find({lang: 'spa'}, function(error, labels) {
+					if(error) {
+						return callback(error);
+					}
+					else {
+						callback(error, labels);
+					}
+				})
+			},
+
+			// Extract leads data
+			function(callback) {
+				Lead.find({}, function(error, leads) {
+					if(error) {
+						return callback(error);
+					}
+					else {
+						callback(error, leads);
+					}
+				})
+			}
+
+		], function(error, results) {
 			if(error) {
 				console.log(error);
+				res.send(500);
 			}
 			else {
-				console.log(results);
+				// Debug code only; remove
+				if(typeof results[0][0] === 'object') { console.log('Object!!!'); }
+				//var temp = results[0][0].toObject();
+				var temp = results[0][0];
+				console.log('temp lang is ', temp.lang);
+				console.log(temp);
+				for (xyz in temp) { console.log(xyz); }
+				// End of debug code
+
 				res.render('index', {
-					userInputs: userInputs,
-					leadsData: results
+					labelData: results[0][0].toObject(),
+					leadsData: results[1]
 				})
 			}
 		})
-	},
+	}, // End of 'index' controller
 
 	write: function(req, res) {
 		console.log(req.body);
@@ -43,7 +90,7 @@ var controller = {
 				res.send(200);
 			}
 		})
-	}
+	} // End of 'write' controller
 }
 
 module.exports = controller;

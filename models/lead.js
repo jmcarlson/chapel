@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 //  cd03 -> Email
 //  cd04 -> Phone
 //  cd05 -> Create date
-//  cd06 -> Update date
+//  cd06 -> Last Update date
 
 var Lead = mongoose.model('Lead', {
 	id: mongoose.Schema.Types.ObjectId,
@@ -15,7 +15,7 @@ var Lead = mongoose.model('Lead', {
 	cd03: String,
 	cd04: String,
 	cd05: { type: Date, default: Date.now },
-	cd06: Date
+	cd06: { type: Date, default: Date.now }
 });
 
 module.exports = Lead;

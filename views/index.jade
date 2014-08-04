@@ -46,7 +46,7 @@ block content
 		form(class='form-inline core-form' role='form' method='post')
 			#form-icon.icon-inline.icon-down-open
 			.form-group
-				input(type='text' class='form-control' id='cd01' placeholder='First Name')
+				input(type='text' class='form-control' id='cd01' placeholder='#{labelData.cd01}')
 			.form-group
 				input(type='text' class='form-control' id='cd02' placeholder='Last Name')
 			.form-group
@@ -66,15 +66,19 @@ block content
 					#leadEmail.col-xs-12.col-sm-1.col-md-3 #{object.cd03}
 					#leadPhone.col-xs-12.col-sm-1.col-md-2 #{object.cd04}
 				.debug1.user-data(data-id='#{object.id}')
-					.debug2.col-xs-4.col-sm-4.col-md-2 First name
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd01}
 					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd01}
-					.debug2.col-xs-4.col-sm-4.col-md-2 Last name
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd02}
 					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd02}
-					.debug2.col-xs-4.col-sm-4.col-md-2 Email
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd03}
 					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd03}
-					.debug2.col-xs-4.col-sm-4.col-md-2 Phone
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd04}
 					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd04}
-					//-for property in object
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd05}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd05}
+					.debug2.col-xs-4.col-sm-4.col-md-2 #{labelData.cd06}
+					.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{object.id}') #{object.cd06}
+					//-for property in labelData
 					//-	p= property
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')
 	script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
