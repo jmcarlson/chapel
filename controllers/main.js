@@ -8,20 +8,6 @@ var controller = {
 
 	index: function(req, res) {
 
-		// Non-async func to pull leads data
-	// 	Lead.find({}, function(error, results) {
-	// 		if(error) {
-	// 			console.log(error);
-	// 		}
-	// 		else {
-	// 			console.log(results);
-	// 			res.render('index', {
-	// 				userInputs: userInputs,
-	// 				leadsData: results
-	// 			})
-	// 		}
-	// 	})
-
 		// Async.series mechanism for database
 		// queries; leads and label data
 		async.series([

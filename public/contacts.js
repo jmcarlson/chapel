@@ -1,6 +1,3 @@
-// var userInputs = require('../models/contacts-user-fields.js');
-// var leadsData = require('../models/contacts-data-small.js');
-// var Lead = require('../models/lead.js');
 //
 // Helper functions
 //
