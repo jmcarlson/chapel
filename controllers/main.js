@@ -3,6 +3,7 @@ var leadsData = require('../models/contacts-data-small.js');
 var userInputs = require('../models/contacts-user-fields.js');
 var Lead = require('../models/lead.js');
 var Label = require('../models/label.js');
+var Schedule = require('../models/schedule.js');
 
 var controller = {
 
@@ -14,7 +15,7 @@ var controller = {
 
 			// Extract label data
 			function(callback) {
-				Label.find({lang: 'eng'}, function(error, labels) {
+				Label.find({lang: 'spa'}, function(error, labels) {
 					if(error) {
 						return callback(error);
 					}
@@ -34,6 +35,18 @@ var controller = {
 						callback(error, leads);
 					}
 				})
+			},
+
+			// Extract schedule data
+			function(callback) {
+				Schedule.find({}, function(error, schedule) {
+					if(error) {
+						return callback(error);
+					}
+					else {
+						callback(error, schedule);
+					}
+				})
 			}
 
 		], function(error, results) {
@@ -44,18 +57,21 @@ var controller = {
 			else {
 
 				// Debug code only; remove
-				if(typeof results[0][0] === 'object') { console.log('Object!!!'); }
+				// if(typeof results[0][0] === 'object') { console.log('Object!!!'); }
 				//console.log(results);
-				//var temp = results[0][0].toObject();
-				var temp = results[0][0];
-				console.log(temp);
-				console.log('temp lang is ', temp.lang);
-				for (xyz in temp) { console.log(xyz); }
+				// var temp = results[0][0].toObject();
+				// var temp = results[0][0];
+				// console.log(temp);
+				// console.log('object.lang is ', temp.lang);
+				// for (xyz in temp) { console.log(xyz); }
+
+				// console.log(results[2][0].days);
 				// End of debug code
 
 				res.render('index', {
 					labelData: results[0][0].toObject(),
-					leadsData: results[1]
+					leadsData: results[1],
+					scheduleData: results[2][0]
 				})
 			}
 		})

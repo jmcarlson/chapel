@@ -105,25 +105,37 @@ $(document).on('ready', function() {
 	$('#user-fields-form').hide();
 	$('.internal-eval').hide();
 	$('.tools').hide();
+	$('.preferences').hide();
 
 	//
 	// Event handlers
 	//
 	$(document).on('click', '#home', function(e) {
-		renderInputs();
-		renderData(leadsData.sort(compareId));
+		// renderInputs();
+		// renderData(leadsData.sort(compareId));
 		$('.user-form').hide();
 		$('#user-fields-form').hide();	
-		$('#form-icon').attr('class', 'icon-inline icon-down-open')	
+		$('#form-icon').attr('class', 'icon-inline icon-down-open');
+		$('.tools').hide();
+		$('.preferences').hide();
 	});
 
-	// Internal only
 	$(document).on('click', '#tools', function(e) {
 		if( $('.tools').is(':hidden') ) {
 			$('.tools').show();
 		}
 		else {
 			$('.tools').hide();
+		}
+
+	});
+
+	$(document).on('click', '#preferences', function(e) {
+		if( $('.preferences').is(':hidden') ) {
+			$('.preferences').show();
+		}
+		else {
+			$('.preferences').hide();
 		}
 
 	});
