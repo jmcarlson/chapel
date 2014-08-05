@@ -14,7 +14,7 @@ var controller = {
 
 			// Extract label data
 			function(callback) {
-				Label.find({lang: 'spa'}, function(error, labels) {
+				Label.find({lang: 'eng'}, function(error, labels) {
 					if(error) {
 						return callback(error);
 					}
