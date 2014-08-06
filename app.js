@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/crm', controller.index);
 app.post('/write', controller.write);
+app.get('/crm/lead', controller.lead);
 
 var server = app.listen(3000, function() {
 	console.log('Express server listening on port ' + server.address().port);

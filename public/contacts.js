@@ -107,6 +107,39 @@ $(document).on('ready', function() {
 	$('.tools').hide();
 	$('.preferences').hide();
 
+$.get('crm/lead', function(results) {
+	var leadContent = new Leads(results);
+	// leadContent.fetch();
+	console.log(leadContent);
+	var leadView = new LeadView({
+		collection: leadContent
+	})
+	// leadContent.fetch();
+	// leadView.render();
+	$('.primary').append(leadView.$el);
+	console.log(leadView.$el);
+})
+
+	// Get data and render
+	// var leadContent = new LeadModel();
+	// leadContent.get();
+	// console.log(leadContent);
+
+	// $.get('crm/lead', function(results) {
+	// 	for (var i = 0; i < results.length; i++) {
+	// 		// var leadContent = new LeadModel(results);
+	// 		// var leadView = new LeadView({
+	// 		// 	collection: leadContent
+	// 		// })
+	// 		// leadView.render();
+	// 		// console.log(leadView.$el);
+	// 		$('.primary').append('<div class="debug1 core-data col-xs-12 col-sm-12 col-md-12">' + results[i]._id + '</div>');
+	// 	};
+	// 	// $('.primary').append(results);
+	// })
+
+
+
 	//
 	// Event handlers
 	//

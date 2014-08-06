@@ -1,0 +1,84 @@
+Backbone.js Notes
+
+Fetching data from server:
+	// Define root for route handler
+	var TodoItem = Backbone.Model.extend({urlRoot: '/todos'});
+	// Create instance with specific id
+	var todoItem = new TodoItem({id: 1});
+	// Fetch the data for id
+	todoItem.fetch();
+	// Update the item
+	todoItem.set({description: 'text here'});
+	// Put request to server
+	todoItem.save();
+
+Creating & destroying a new item:
+	var todoItem = new TodoItem();
+	todoItem.set({description: 'fill prescription'});
+	// Post to urlRoot w/ JSON params
+	todoItem.save();
+	// Returns id of item (verification)
+	todoItem.get('id');
+	// DELETE request to urlRoot
+	todoItem.destroy();
+	// Get JSON from model
+	// Returns object. ex) {id: 2, description: 'fill prescription'}
+	todoItem.toJSON();
+
+Events:
+	// setup event handler; <event>, <function>
+	todoItem.on('change', doThing);
+	// Events: change, change:<attr>, destroy, sync, error, all
+
+Defaults:
+	// Use a function to avoid non-primitive issues
+	defaults: function() {
+		return {
+			title: 'whatever',
+			date: new Date()
+		}
+	}
+
+Views:
+	// Change default tag as follows; can be any tag
+	var SimpleView = Backbone.View.extend({tagName: 'li'});
+	// example 2
+	// todoView.el = "<article id='todo-view class='todo'></article>"
+	var TodoView = Backbone.View.extend({
+		tagName: 'article',
+		id: 'todo-view',
+		className: 'todo'
+	});
+	// Reference element above:
+	// jQuery: $('#todo-view').html()
+	// Backbone: $(todoView.el).html()
+	// Shortcut: todoView.$el.html()
+
+	// Templating with Underscore
+	// Inside Backbone.View.extend block
+	template: _.template('<h3><%= description %></h3>'),
+	// In render method (using shortcut syntax)
+	var attributes = this.model.toJSON();
+	this.$el.html(this.template(attributes));
+
+View Events:
+	// example
+	// Note: Scoped with the el only!!!
+	// Similar to: this.$el.delegate('h3','click',alertStatus);
+	var TodoView = Backbone.View.extend({
+		events: {
+		// <event> <selector>: <method>
+			"click h3": "alertStatus"
+		},
+		alertStatus: function(e) {
+		alert('whatever');
+		}
+	});
+	// can list multiple events in the 'events' method
+	// Events: change, click, dblclick, focus, focusin, focusout
+	// hover, keydown, keypress, load, mousedown, mouseenter
+	// mouseleave, mousemove, mouseout, mouseover, mouseup
+	// ready, resize, scroll, select, unload
+	// custom events?!
+
+

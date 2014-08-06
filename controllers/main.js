@@ -78,7 +78,7 @@ var controller = {
 	}, // End of 'index' controller
 
 	write: function(req, res) {
-		console.log(req.body);
+		// console.log(req.body);
 		var lead = new Lead();
 		if(req.body.cd01) { lead.cd01 = req.body.cd01; }
 		if(req.body.cd02) { lead.cd02 = req.body.cd02; }
@@ -94,7 +94,19 @@ var controller = {
 				res.send(200);
 			}
 		})
-	} // End of 'write' controller
+	}, // End of 'write' controller
+
+	lead: function(req, res) {
+		console.log(req.body);
+		Lead.find({}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				res.send(200, results);
+			}
+		})
+	}
 }
 
 module.exports = controller;
