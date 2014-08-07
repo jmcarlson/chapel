@@ -45,6 +45,10 @@
 	/*background: linear-gradient(#F8F8F8, white);*/
 }
 
+.user-data {
+	display: none;
+}
+
 #inputs-form-add {
 	display: none;
 }
