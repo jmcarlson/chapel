@@ -1,7 +1,7 @@
-var LeadModel = Backbone.Model.extend({
-	urlRoot: '/crm/lead'
+var Lead = Backbone.Model.extend({
 })
 
-var Leads = Backbone.Collection.extend({
-	// model: LeadModel
+var LeadList = Backbone.Collection.extend({
+	model: Lead,
+	url: '/crm/lead'
 })

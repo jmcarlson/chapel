@@ -1,5 +1,16 @@
 Backbone.js Notes
 
+Chapel naming convention:
+
+model 				: lead
+collection			: leadList
+model view 			: leadView
+collection view 	: leadListView
+
+
+
+
+
 Fetching data from server:
 	// Define root for route handler
 	var TodoItem = Backbone.Model.extend({urlRoot: '/todos'});
