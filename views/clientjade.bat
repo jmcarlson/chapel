@@ -1,0 +1,1 @@
+node C:\RootDev\chapel\node_modules\clientjade\bin\clientjade

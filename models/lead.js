@@ -10,10 +10,10 @@ var mongoose = require('mongoose');
 
 var Lead = mongoose.model('Lead', {
 	id: mongoose.Schema.Types.ObjectId,
-	cd01: String,
-	cd02: String,
-	cd03: String,
-	cd04: String,
+	cd01: { type: String, default: '' },
+	cd02: { type: String, default: '' },
+	cd03: { type: String, default: '' },
+	cd04: { type: String, default: '' },
 	cd05: { type: Date, default: Date.now },
 	cd06: { type: Date, default: Date.now }
 });

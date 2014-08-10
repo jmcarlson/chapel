@@ -1,0 +1,9 @@
+.debug1.core-data.col-xs-12.col-sm-12.col-md-12(data-id='#{lead._id}')
+	.icon-inline.icon-menu.col-xs-12.col-sm.1.col-md-1
+	#leadFirstName.col-xs-12.col-sm-1.col-md-2 #{lead.cd01}
+	#leadLastName.col-xs-12.col-sm-1.col-md-2 #{lead.cd02}
+	#leadEmail.col-xs-12.col-sm-1.col-md-3 #{lead.cd03}
+	#leadPhone.col-xs-12.col-sm-1.col-md-2 #{lead.cd04}
+.debug1.user-data(data-id='#{lead._id}')
+	.debug2.col-xs-4.col-sm-4.col-md-2 #{label.cd01}
+	.debug2.col-xs-8.col-sm-8.col-md-10.user-detail-data(data-id='#{lead._id}') #{lead.cd01}

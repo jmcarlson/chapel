@@ -7,6 +7,12 @@ collection			: leadList
 model view 			: leadView
 collection view 	: leadListView
 
+New format:
+
+{
+	label: 'First Name',
+	data: 'Jon'
+}
 
 
 

@@ -91,13 +91,13 @@ var controller = {
 			}
 			else {
 				console.log('Contact add successful');
-				res.send(200);
+				//console.log('results: ', results);
+				res.send(200, results);
 			}
 		})
 	}, // End of 'write' controller
 
 	lead: function(req, res) {
-		console.log(req.body);
 		Lead.find({}, function(error, results) {
 			if(error) {
 				console.log(error);
@@ -106,7 +106,31 @@ var controller = {
 				res.send(200, results);
 			}
 		})
-	}
+	}, // end of 'lead' controller
+
+	leadById: function(req, res) {
+		console.log(req.params.id);
+		Lead.find({_id: req.params.id}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				res.send(200, results);
+			}
+		})
+	}, // end of 'lead' controller
+
+	label: function(req, res) {
+		Label.find({lang: 'spa'}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				res.send(200, results);
+			}
+		})
+	} // end of 'label' controller
+
 }
 
 module.exports = controller;

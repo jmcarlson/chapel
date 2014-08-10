@@ -1,3 +1,7 @@
+var Label = Backbone.Model.extend({
+	url: '/crm/label'
+})
+
 var Lead = Backbone.Model.extend({
 })
 

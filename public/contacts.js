@@ -44,7 +44,6 @@ var getLabel = function(str) {
 	return _.findWhere(userInputs, {name: str}).label
 }
 
-
 //
 // Render functions
 //
@@ -94,6 +93,52 @@ var renderInputs = function() {
 	}
 }
 
+// Handlebars template helper
+Handlebars.registerHelper('leadFullName', function() {
+	return this.label.cd01 + ": " + this.lead.cd01 + " " + this.lead.cd02;
+});
+
+// Client Jade template
+var renderLeadDetailHtml = function(results) {
+		var leadDetailHtml = $('#leadDetailTemplate2').html();
+		var createLeadDetailHtml = Handlebars.compile(leadDetailHtml);
+		var newLeadDetailHtml = createLeadDetailHtml( results );
+		$('.primary').append(newLeadDetailHtml);
+
+		jade.render(document.getElementById('primary'), 'clientlead', {
+			lead: results,
+			label: [] 
+		})
+}
+
+// jQuery/AJAX template
+var appendNewLeadHtml = function(leadData) {
+	$.get('/crm/label', function(labelData) {
+		var newHtml = $('<div id="' + leadData._id + '" class="debug1 core-data col-xs-12 col-sm-12 col-md-12">');
+		newHtml.append('<div class="icon-inline icon-menu col-xs-12 col-sm-1 col-md-1">');
+		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd01);
+		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd02);
+		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-3">' + leadData.cd03);
+		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd04);
+
+		var leadKeys = _.sortBy(_.keys(leadData), function(str) {
+			return str;
+		});
+
+		var newHtml2 = $('<div id="' + leadData._id + '" class="debug1 user-data">');
+		// for (var prop in leadData) {
+		for (var i = 0; i < leadKeys.length; i++) {
+			if(leadKeys[i][0] === 'c') {
+				newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[0][leadKeys[i]]);
+				newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
+			}
+		}
+
+		newHtml.appendTo('#primary');
+		newHtml2.appendTo('#primary');
+	})
+}
+
 //
 // Document ready; entry and event handlers
 //
@@ -108,9 +153,17 @@ $(document).on('ready', function() {
 	$('.preferences').hide();
 
 
-	// Kick off initial view of collection
-	var leadListView = new LeadListView();
+	// Backbone entry; initial view of collection
+	// var leadListView = new LeadListView();
 
+	// Perform AJAX get call instead of Backbone fetch
+	$.get('/crm/lead', function(results) {
+		for (var i = 0; i < results.length; i++) {
+			console.log(results[i]);
+			appendNewLeadHtml(results[i]);
+		};
+		// console.log('results count: ', results.length);
+	})
 
 	//
 	// Event handlers
@@ -173,6 +226,7 @@ $(document).on('ready', function() {
 		}
 	})
 
+
 // MongoDB/Mongoose enabled
 	$('.core-form').on('submit', function(e) {
 		e.preventDefault();
@@ -187,32 +241,13 @@ $(document).on('ready', function() {
 	 			temp[formData[i].id] = formData[i].value;
 	 		}
 	 	};
-		console.log(temp);
 
 		// Add contact data to database
-		$.post('/write', temp, function() {
-
+		$.post('/write', temp, function(results) {
+			appendNewLeadHtml(results);
 		});
 	});
 
-// Old version; Client only prototype
-	// $('.core-form').on('submit', function(e) {
-	// 	e.preventDefault();
-
-	// 	var coreFormData = $('.core-form').find('[class=form-control]');
-
-	// 	var testFormData3 = $('.form-group').find('[class=form-control]');
-	// 	leadsData.push({id: nextLeadId().toString()});
-	// 	var temp = _.last(leadsData);
-
-	// 	for (var i = 0; i < testFormData3.length; i++) {
-	// 		if(testFormData3[i].value) {
-	// 			temp[testFormData3[i].id] = testFormData3[i].value;
-	// 		}
-	// 	};
-	// 	renderInputs();
-	// 	renderData(leadsData);
-	// });
 
 	$(document).on('click', '#settings', function(e) {
 		if( $('#user-fields-form').is(':hidden') ) {
