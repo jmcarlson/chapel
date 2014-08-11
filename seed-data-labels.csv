@@ -1,2 +1,0 @@
-{ "_id" : { "$oid" : "53dec6f19ade57532e857a0c" }, "lang" : "eng", "cd01" : "First Name", "cd02" : "Last Name", "cd03" : "Email", "cd04" : "Phone", "cd05" : "Created", "cd06" : "Last Update" }
-{ "_id" : { "$oid" : "53dec75d9ade57532e857a0d" }, "lang" : "spa", "cd01" : "Nombre de Pila", "cd02" : "Apellido", "cd03" : "Email", "cd04" : "Telefono", "cd05" : "Creado", "cd06" : "Ultima actualizacian" }

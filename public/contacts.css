@@ -87,6 +87,14 @@
 	/*border: 1px solid LightGray;*/
 }
 
+.tools {
+	display: none;
+}
+
 .tools > button {
 	display: block;
+}
+
+.preferences {
+	display: none;
 }

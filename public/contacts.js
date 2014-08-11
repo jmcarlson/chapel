@@ -95,6 +95,7 @@ var renderInputs = function() {
 
 // Handlebars template helper
 Handlebars.registerHelper('leadFullName', function() {
+	console.log("Comment: ", this)
 	return this.label.cd01 + ": " + this.lead.cd01 + " " + this.lead.cd02;
 });
 
@@ -168,6 +169,9 @@ $(document).on('ready', function() {
 	//
 	// Event handlers
 	//
+
+	$('.dropdown-toggle').dropdown();
+
 	$(document).on('click', '#home', function(e) {
 		// renderInputs();
 		// renderData(leadsData.sort(compareId));
@@ -245,6 +249,23 @@ $(document).on('ready', function() {
 		// Add contact data to database
 		$.post('/write', temp, function(results) {
 			appendNewLeadHtml(results);
+		});
+	});
+
+	$('.preferences-form').on('submit', function(e) {
+		e.preventDefault();
+		var formData = $(this).find('[class=form-control]');
+		console.log('pref-forms: ', formData);
+		var temp = {};
+	 	for (var i = 0; i < formData.length; i++) {
+	 		if(formData[i].value) {
+	 			temp[formData[i].id] = formData[i].value;
+	 		}
+	 	};
+
+		// Add contact data to database
+		$.post('/preferences', temp, function(results) {
+			// appendNewLeadHtml(results);
 		});
 	});
 

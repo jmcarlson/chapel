@@ -19,6 +19,7 @@ app.post('/write', controller.write);
 app.get('/crm/lead', controller.lead);
 app.get('/crm/lead/:id', controller.leadById);
 app.get('/crm/label', controller.label);
+app.get('/preferences', controller.preferences);
 
 var server = app.listen(3000, function() {
 	console.log('Express server listening on port ' + server.address().port);

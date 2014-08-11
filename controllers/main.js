@@ -15,7 +15,7 @@ var controller = {
 
 			// Extract label data
 			function(callback) {
-				Label.find({lang: 'spa'}, function(error, labels) {
+				Label.find({lang: 'English'}, function(error, labels) {
 					if(error) {
 						return callback(error);
 					}
@@ -121,7 +121,7 @@ var controller = {
 	}, // end of 'lead' controller
 
 	label: function(req, res) {
-		Label.find({lang: 'spa'}, function(error, results) {
+		Label.find({lang: 'English'}, function(error, results) {
 			if(error) {
 				console.log(error);
 			}
@@ -129,7 +129,11 @@ var controller = {
 				res.send(200, results);
 			}
 		})
-	} // end of 'label' controller
+	}, // end of 'label' controller
+
+	preferences: function(req, res) {
+		res.send(200);
+	} // end of 'preferences' controller
 
 }
 
