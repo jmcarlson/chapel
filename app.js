@@ -6,7 +6,7 @@ var leadsData = require('./models/contacts-data-small.js');
 var controller = require('./controllers/main.js');
 
 // mongoose.connect('mongodb://localhost/chapel');
-mongoose.connect('mongodb://heroku_app27786453:Chapel2014@ds033679.mongolab.com:33679/heroku_app27786453');
+mongoose.connect('mongodb://chapel:Chapel2014@ds033679.mongolab.com:33679/heroku_app27786453');
 
 var app = express();
 app.set('view engine', 'jade');
