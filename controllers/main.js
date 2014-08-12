@@ -76,7 +76,7 @@ var controller = {
 					leadsData: results[1],
 					scheduleData: results[2][0]
 				})
-				res.send(200);
+				// res.send(200);
 			}
 		})
 	}, // End of 'index' controller
