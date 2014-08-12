@@ -22,6 +22,18 @@ app.get('/crm/lead/:id', controller.leadById);
 app.get('/crm/label', controller.label);
 app.get('/preferences', controller.preferences);
 
+// Refactor controller routes
+// app.get('/', controller.index)
+// app.get('/api/leads', controller.api-leads)
+// app.get('/api/leads/:id', controller.api-leadsById)
+// app.get('/api/labels', controller.api-labels)
+// app.get('/api/reminders', controller.api-reminders)
+// app.get('/api/preferences', controller.api-preferences)
+// app.get('/admin/status', controller.admin-status)
+// app.get('/admin/metrics', controller.admin-metrics)
+// app.get('/admin/reminders', controller.admin-reminders)
+// app.get('/admin/reminders/today', controller.admin-reminders-today)
+
 var server = app.listen(process.env.PORT || 3000, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
