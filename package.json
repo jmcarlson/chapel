@@ -9,5 +9,26 @@
     "async": "~0.9.0",
     "clientjade": "~0.1.1",
     "moment": "~2.8.1"
-  }
+  },
+  "name": "chapel",
+  "version": "0.0.0",
+  "description": "ERROR: No README data found!",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmcarlson/chapel"
+  },
+  "author": "jmc",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jmcarlson/chapel/issues"
+  },
+  "keywords": [
+    "chapel"
+  ]
 }
