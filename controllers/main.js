@@ -1,9 +1,12 @@
 var async = require('async');
+var moment = require('moment');
 var leadsData = require('../models/contacts-data-small.js');
 var userInputs = require('../models/contacts-user-fields.js');
 var Lead = require('../models/lead.js');
 var Label = require('../models/label.js');
 var Schedule = require('../models/schedule.js');
+var Delivery = require('../models/delivery.js');
+var Preference = require('../models/preference.js');
 
 var controller = {
 
@@ -79,20 +82,46 @@ var controller = {
 
 	write: function(req, res) {
 		// console.log(req.body);
+
+		// Add new lead
 		var lead = new Lead();
 		if(req.body.cd01) { lead.cd01 = req.body.cd01; }
 		if(req.body.cd02) { lead.cd02 = req.body.cd02; }
 		if(req.body.cd03) { lead.cd03 = req.body.cd03; }
 		if(req.body.cd04) { lead.cd04 = req.body.cd04; }
-		lead.save(function(error, results) {
+		lead.save(function(error, lead_results) {
 			if(error) {
 				console.log(error);
 				res.send(500);
 			}
 			else {
-				console.log('Contact add successful');
-				//console.log('results: ', results);
-				res.send(200, results);
+				// console.log('results: ', lead_results);
+						// Extract default schedule to setup email delivery schedule
+						Preference.find({name: 'schedule'}, function(error, pref_results) {
+							if(error) {
+								console.log(error);
+							}
+							else {
+								// Add future delivery dates to database
+								var schedule = pref_results[0].value.split(',');
+								for (var i = 0; i < schedule.length; i++) {
+									var newDate = moment({h:00,m:00,s:00,ms:000}).add(schedule[i],'days');
+									var delivery = new Delivery();
+									delivery.lead_id = lead_results._id;
+									delivery.delivery = newDate;
+									delivery.save(function(error, delivery_results) {
+										if(error) {
+											console.log(error);
+										}
+										else {
+											console.log('Added email schedule: ', delivery);
+										}
+									})
+								};
+							}
+						});
+
+				res.send(200, lead_results);
 			}
 		})
 	}, // End of 'write' controller
@@ -133,7 +162,21 @@ var controller = {
 
 	preferences: function(req, res) {
 		res.send(200);
-	} // end of 'preferences' controller
+	}, // end of 'preferences' controller
+
+	delivery: function(req, res) {
+		Delivery.find({}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				// res.send(200, results);
+				res.render('delivery', {
+					results: results
+				})
+			}
+		})
+	} // end of 'schedule' controller
 
 }
 

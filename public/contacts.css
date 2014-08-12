@@ -98,3 +98,14 @@
 .preferences {
 	display: none;
 }
+
+.delivery-container {
+	border: 1px solid LightGray;
+	width: 600px;
+}
+
+.delivery {
+	display: inline-block;
+	padding-left: 10px;
+	margin: 5px;
+}
