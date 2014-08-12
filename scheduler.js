@@ -6,8 +6,8 @@ var Delivery = require('./models/delivery.js');
 
 // var controller = require('./controllers/main.js');
 
-mongoose.connect('mongodb://localhost/chapel');
-//mongodb://heroku_app27786453:<dbpassword>@ds033679.mongolab.com:33679/heroku_app27786453
+// mongoose.connect('mongodb://localhost/chapel');
+mongoose.connect('mongodb://heroku_app27786453:Chapel2014@ds033679.mongolab.com:33679/heroku_app27786453');
 
 var app = express();
 app.set('view engine', 'jade');
@@ -55,7 +55,7 @@ app.get('/admin/delivery', function(req, res) {
 
 // app.get('/admin/metrics', controller.metrics)
 
-var server = app.listen(3001, function() {
+var server = app.listen(process.env.port || 3001, function() {
 	console.log('Express server listening on port ' + server.address().port);
 	// Start timer
 	setInterval(function() {
