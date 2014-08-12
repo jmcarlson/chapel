@@ -6,6 +6,10 @@
 	/*border: 1px dotted LightGray;*/
 }
 
+.primary {
+	margin-top: 25px;
+}
+
 .icon-inline {
 	display: inline-block;
 	font-size: 32px;

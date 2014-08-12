@@ -1,3 +1,17 @@
+
+Iterate over properties in object: (Raine example)
+
+{{each label}}
+	value: {{this}}
+	key: {{@key}}
+
+Property order?!
+
+
+
+
+
+
 Backbone.js Notes
 
 Chapel naming convention:

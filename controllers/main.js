@@ -150,7 +150,7 @@ var controller = {
 	}, // end of 'lead' controller
 
 	label: function(req, res) {
-		Label.find({lang: 'English'}, function(error, results) {
+		Label.findOne({lang: 'English'}, function(error, results) {
 			if(error) {
 				console.log(error);
 			}
@@ -162,21 +162,7 @@ var controller = {
 
 	preferences: function(req, res) {
 		res.send(200);
-	}, // end of 'preferences' controller
-
-	delivery: function(req, res) {
-		Delivery.find({}, function(error, results) {
-			if(error) {
-				console.log(error);
-			}
-			else {
-				// res.send(200, results);
-				res.render('delivery', {
-					results: results
-				})
-			}
-		})
-	} // end of 'schedule' controller
+	} // end of 'preferences' controller
 
 }
 

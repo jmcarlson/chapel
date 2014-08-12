@@ -95,7 +95,7 @@ var renderInputs = function() {
 
 // Handlebars template helper
 Handlebars.registerHelper('leadFullName', function() {
-	console.log("Comment: ", this)
+	console.log("Handlebars: ", this)
 	return this.label.cd01 + ": " + this.lead.cd01 + " " + this.lead.cd02;
 });
 
@@ -130,7 +130,7 @@ var appendNewLeadHtml = function(leadData) {
 		// for (var prop in leadData) {
 		for (var i = 0; i < leadKeys.length; i++) {
 			if(leadKeys[i][0] === 'c') {
-				newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[0][leadKeys[i]]);
+				newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
 				newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
 			}
 		}
@@ -155,15 +155,13 @@ $(document).on('ready', function() {
 
 
 	// Backbone entry; initial view of collection
-	// var leadListView = new LeadListView();
+	//var leadListView = new LeadListView();
 
 	// Perform AJAX get call instead of Backbone fetch
 	$.get('/crm/lead', function(results) {
 		for (var i = 0; i < results.length; i++) {
-			console.log(results[i]);
 			appendNewLeadHtml(results[i]);
 		};
-		// console.log('results count: ', results.length);
 	})
 
 	//

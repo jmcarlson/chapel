@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	.container
+		//- Header menu
+		.page-header.h3 Email Delivery for Today
+		.delivery-container
+			h4#del-lead-id.delivery Delivery Lead Id
+			h4#del-date.delivery Delivery Date
+		for delivery in results
+			.delivery-container
+				.delivery #{delivery.lead_id}
+				.delivery #{delivery.delivery}

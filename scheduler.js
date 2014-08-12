@@ -7,6 +7,7 @@ var Delivery = require('./models/delivery.js');
 // var controller = require('./controllers/main.js');
 
 mongoose.connect('mongodb://localhost/chapel');
+//mongodb://heroku_app27786453:<dbpassword>@ds033679.mongolab.com:33679/heroku_app27786453
 
 var app = express();
 app.set('view engine', 'jade');
@@ -27,12 +28,31 @@ app.get('/admin/today', function(req, res) {
 		}
 		else {
 			// res.send('Reminders to process today: ' + results.length);
-			res.send(results);
+			// res.send(results);
+			res.render('delivery-today', {
+				results: results
+			})
 		}
 	})
 });
 
-// app.get('/admin/delivery', controller.delivery);
+app.get('/admin/delivery', function(req, res) {
+	Delivery.find({}, function(error, results) {
+		if(error) {
+			console.log(error);
+			res.send(error);
+		}
+		else {
+			// res.send('Reminders to process today: ' + results.length);
+			// res.send(results);
+			res.render('delivery', {
+				results: results
+			})
+
+		}
+	})
+});
+
 // app.get('/admin/metrics', controller.metrics)
 
 var server = app.listen(3001, function() {

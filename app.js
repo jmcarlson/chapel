@@ -6,6 +6,7 @@ var leadsData = require('./models/contacts-data-small.js');
 var controller = require('./controllers/main.js');
 
 mongoose.connect('mongodb://localhost/chapel');
+//mongodb://heroku_app27786453:<dbpassword>@ds033679.mongolab.com:33679/heroku_app27786453
 
 var app = express();
 app.set('view engine', 'jade');
@@ -20,7 +21,6 @@ app.get('/crm/lead', controller.lead);
 app.get('/crm/lead/:id', controller.leadById);
 app.get('/crm/label', controller.label);
 app.get('/preferences', controller.preferences);
-app.get('/delivery', controller.delivery);
 
 var server = app.listen(3000, function() {
 	console.log('Express server listening on port ' + server.address().port);

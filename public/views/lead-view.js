@@ -17,14 +17,17 @@ var LeadViewDetail = Backbone.View.extend({
 	className: 'user-data',
 	//template: _.template('<div class="debug2 col-xs-4 col-sm-4 col-md-2">First Name</div><div class="col-xs-8 col-sm-8 col-md-10 user-detail-data"><%= cd01 %></div>'),
 	initialize: function() {
-		this.labels = new Label();
-		this.labels.fetch();
+		// this.labels = new Label();
+		// this.listenTo(this.labels, 'change', function() { console.log('change', Object.keys(this.labels.attributes).length) }, this )
+		// this.labels.fetch({ reset: true });
 	},
 
 	render: function() {
 
 	console.log('lead: ',this.model);
-	console.log('labels: ', this.labels);
+	console.log('labels1: ', this.labels);
+	// console.log('labels2: ', Object.keys(this.labels.attributes).length);
+
 	// this.labels.forEach(function(temp) { console.log(temp); });
 
 	// Prep handlebars template (#leadDetailTemplate)
@@ -59,28 +62,32 @@ var LeadListView = Backbone.View.extend({
 	// Use initialize to prime the pump
 	initialize: function() {
 		this.collection = new LeadList();
-		//this.label = new Label();
 		this.listenTo(this.collection, 'reset', this.render);
 		this.collection.fetch({reset: true});
-		//this.label.fetch();
-		//console.log(this.label);
+
+		this.labels = new Label();
+		this.listenTo(this.labels, 'change', this.render);
+		// this.listenTo(this.labels, 'change', function() { console.log('change', Object.keys(this.labels.attributes).length) }, this )
+		this.labels.fetch({});
 },
 
 	render: function() {
-		//console.log(this.collection);
-		//console.log(this.label);
+		console.log('render collection: ', this.collection);
+		console.log('render label: ', this.labels);
+		console.log(this.collection.length);
+		// console.log(this.labels.toJSON());
 		this.collection.forEach(function(lead) {
-			this.renderList(lead);
+			this.renderList(lead, this.labels);
 		}, this);
 	},
 
-	renderList: function(lead, label) {
+	renderList: function(lead, labels) {
 		var leadViewHeader = new LeadViewHeader({
 			model: lead
 		});
 		var leadViewDetail = new LeadViewDetail({
-			'model': lead
-			//'label': label
+			'model': lead,
+			'label': labels
 		});
 		//console.log(leadViewDetail);
 		this.$el.append(leadViewHeader.render().el);
