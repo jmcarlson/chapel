@@ -95,8 +95,22 @@ var renderInputs = function() {
 
 // Handlebars template helper
 Handlebars.registerHelper('leadFullName', function() {
-	console.log("Handlebars: ", this)
-	return this.label.cd01 + ": " + this.lead.cd01 + " " + this.lead.cd02;
+	console.log("Handlebars: ", this);
+	console.log("Handlebars: ", this.lead.length);
+	var newHtml = $('<div id="' + this.lead._id + '" class="debug1 user-data">');
+	for (prop in this.lead) {
+		// console.log('prop: ', prop);
+		if(prop[0] === 'c') {
+			console.log('Handlebars: ' + this.label[prop] + ', ' + this.lead[prop]);
+			newHtml.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + prop + '">' + this.label[prop] );
+			newHtml.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + this.lead[prop] );
+		}
+	}
+	// var newHtml = '<div>';
+	// for(var x = 0; x < this.lead.length)
+
+	// return this.label.cd01 + ": " + this.lead.cd01 + " " + this.lead.cd02;
+	return newHtml;
 });
 
 // Client Jade template
@@ -155,14 +169,21 @@ $(document).on('ready', function() {
 
 
 	// Backbone entry; initial view of collection
-	//var leadListView = new LeadListView();
+	// v1.0 entry
+	// var leadListView = new LeadListView();
+	// v2.0 entry
+	var leadList = new LeadList();
+	var labels = new Label();
+	var leadListView = new LeadListView({ collection: leadList, labels: labels });
+	leadList.getResults();
+	labels.getResults();
 
 	// Perform AJAX get call instead of Backbone fetch
-	$.get('/crm/lead', function(results) {
-		for (var i = 0; i < results.length; i++) {
-			appendNewLeadHtml(results[i]);
-		};
-	})
+	// $.get('/crm/lead', function(results) {
+	// 	for (var i = 0; i < results.length; i++) {
+	// 		appendNewLeadHtml(results[i]);
+	// 	};
+	// })
 
 	//
 	// Event handlers

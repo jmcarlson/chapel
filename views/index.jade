@@ -77,9 +77,11 @@ block content
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js')
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js')
+	script(src='http://cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js')
 	script(src='views/lead-view.js')
 	script(src='models/lead-model.js')
 	script(src='contacts.js')
 	script(src='test.js')
 	script(id='leadDetailTemplate' type='text/x-handlebars-template')<div class='testClass'>HBS: {{this.cd01}}</div>
 	script(id='leadDetailTemplate2' type='text/x-handlebars-template')<div class='testClass'>{{#leadFullName this}}{{/leadFullName}}</div>
+	//- script(id='leadDetailTemplate2' type='text/x-handlebars-template')<div class='testClass'>{{each this.lead}} Value: {{this}}  Key: {{@key}}</div>

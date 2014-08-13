@@ -16,16 +16,16 @@ var LeadViewDetail = Backbone.View.extend({
 	tagName: 'div',
 	className: 'user-data',
 	//template: _.template('<div class="debug2 col-xs-4 col-sm-4 col-md-2">First Name</div><div class="col-xs-8 col-sm-8 col-md-10 user-detail-data"><%= cd01 %></div>'),
-	initialize: function() {
+	initialize: function(params) {
 		// this.labels = new Label();
 		// this.listenTo(this.labels, 'change', function() { console.log('change', Object.keys(this.labels.attributes).length) }, this )
 		// this.labels.fetch({ reset: true });
+		this.leads = params.leads;
+		this.labels = params.labels;
 	},
 
-	render: function() {
+	render: function(params) {
 
-	console.log('lead: ',this.model);
-	console.log('labels1: ', this.labels);
 	// console.log('labels2: ', Object.keys(this.labels.attributes).length);
 
 	// this.labels.forEach(function(temp) { console.log(temp); });
@@ -40,7 +40,7 @@ var LeadViewDetail = Backbone.View.extend({
 	//console.log(createLeadDetailHtml());
 	// 3) Render the template
 	var newLeadDetailHtml = createLeadDetailHtml({ 
-		lead: this.model.toJSON(),
+		lead: this.leads.toJSON(),
 		label: this.labels.toJSON()
 
 	});
@@ -60,35 +60,57 @@ var LeadListView = Backbone.View.extend({
 	el: '.primary',
 
 	// Use initialize to prime the pump
-	initialize: function() {
-		this.collection = new LeadList();
-		this.listenTo(this.collection, 'reset', this.render);
-		this.collection.fetch({reset: true});
+	initialize: function(params) {
+		console.log('LeadListView init');
+		console.log('xx', this.collection);
+		console.log('xx', params.labels);
+		// this.collection = new LeadList();
+		// this.labels = new Label();
+		this.labels = params.labels;
+		this.listenTo(this.collection, 'successOnFetch', this.render);
+		this.listenTo(this.labels, 'successOnFetch', this.render);
 
-		this.labels = new Label();
-		this.listenTo(this.labels, 'change', this.render);
+		// this.listenTo(this.collection, 'reset', this.fetch);
+		// this.collection.trigger('reset');
+
+		// this.collection.fetch({reset: true});
+
+		
+		// this.listenTo(this.labels, 'change', this.render);
 		// this.listenTo(this.labels, 'change', function() { console.log('change', Object.keys(this.labels.attributes).length) }, this )
-		this.labels.fetch({});
-},
+		// this.labels.fetch({});
+	},
+
+	fetch: function() {
+		console.log('LeadListView fetch');
+	},
 
 	render: function() {
-		console.log('render collection: ', this.collection);
-		console.log('render label: ', this.labels);
-		console.log(this.collection.length);
+		if (this.collection.dataValid && this.labels.dataValid){
+			console.log("Got labels and data");
+			console.log('LeadListView render lead: ', this.collection);
+			console.log('LeadListView render labels: ', this.labels);
+			this.collection.forEach(function(lead) {
+				this.renderList(lead, this.labels);
+			}, this);
+		}
+		// console.log('LeadListView render');
+		// console.log('render collection: ', this.collection);
+		// console.log('render label: ', this.labels);
+		// console.log('Fetch flags: ' + dataFetch + ', ' + labelsFetch);
 		// console.log(this.labels.toJSON());
-		this.collection.forEach(function(lead) {
-			this.renderList(lead, this.labels);
-		}, this);
+		// this.collection.forEach(function(lead) {
+		// 	this.renderList(lead, {});
+		// }, this);
 	},
 
 	renderList: function(lead, labels) {
+		console.log('LeadListView renderList lead: ', lead);
+		console.log('LeadListView renderList labels: ', labels);
 		var leadViewHeader = new LeadViewHeader({
 			model: lead
 		});
-		var leadViewDetail = new LeadViewDetail({
-			'model': lead,
-			'label': labels
-		});
+		var leadViewDetail = new LeadViewDetail({ leads: lead, labels: labels });
 		//console.log(leadViewDetail);
 		this.$el.append(leadViewHeader.render().el);
 		this.$el.append(leadViewDetail.render().el);
