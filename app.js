@@ -1,9 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var moment = require('moment');
 var userInputs = require('./models/contacts-user-fields.js');
 var leadsData = require('./models/contacts-data-small.js');
 var controller = require('./controllers/main.js');
+var scheduler = require('./controllers/scheduler.js');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/chapel');
 // mongoose.connect('mongodb://chapel:Chapel2014@ds033679.mongolab.com:33679/heroku_app27786453');
@@ -21,6 +23,8 @@ app.get('/crm/lead', controller.lead);
 app.get('/crm/lead/:id', controller.leadById);
 app.get('/crm/label', controller.label);
 app.get('/preferences', controller.preferences);
+app.get('/delivery', controller.delivery);
+app.get('/today', controller.today);
 
 // Refactor controller routes
 // app.get('/', controller.index)
@@ -36,4 +40,5 @@ app.get('/preferences', controller.preferences);
 
 var server = app.listen(process.env.PORT || 3000, function() {
 	console.log('Express server listening on port ' + server.address().port);
+	setInterval(function() { scheduler.process2(); }, 20000);
 });

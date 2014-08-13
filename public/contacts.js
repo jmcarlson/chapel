@@ -172,18 +172,18 @@ $(document).on('ready', function() {
 	// v1.0 entry
 	// var leadListView = new LeadListView();
 	// v2.0 entry
-	var leadList = new LeadList();
-	var labels = new Label();
-	var leadListView = new LeadListView({ collection: leadList, labels: labels });
-	leadList.getResults();
-	labels.getResults();
+	// var leadList = new LeadList();
+	// var labels = new Label();
+	// var leadListView = new LeadListView({ collection: leadList, labels: labels });
+	// leadList.getResults();
+	// labels.getResults();
 
 	// Perform AJAX get call instead of Backbone fetch
-	// $.get('/crm/lead', function(results) {
-	// 	for (var i = 0; i < results.length; i++) {
-	// 		appendNewLeadHtml(results[i]);
-	// 	};
-	// })
+	$.get('/crm/lead', function(results) {
+		for (var i = 0; i < results.length; i++) {
+			appendNewLeadHtml(results[i]);
+		};
+	})
 
 	//
 	// Event handlers

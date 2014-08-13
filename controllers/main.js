@@ -110,6 +110,7 @@ var controller = {
 									var delivery = new Delivery();
 									delivery.lead_id = lead_results._id;
 									delivery.delivery = newDate;
+									delivery.status = 'Waiting';
 									delivery.save(function(error, delivery_results) {
 										if(error) {
 											console.log(error);
@@ -160,6 +161,40 @@ var controller = {
 			}
 		})
 	}, // end of 'label' controller
+
+
+	delivery: function(req, res) {
+		Delivery.find({}, function(error, results) {
+			if(error) {
+				console.log(error);
+				res.send(error);
+			}
+			else {
+				// res.send('Reminders to process today: ' + results.length);
+				// res.send(results);
+				res.render('delivery', {
+					results: results
+				})
+			}
+		})
+	}, // end of 'delivery' controller
+
+	today: function(req, res) {
+		var todayDate = moment({h:00,m:00,s:00,ms:000});
+		Delivery.find({ delivery : todayDate }, function(error, results) {
+			if(error) {
+				console.log(error);
+				res.send(error);
+			}
+			else {
+				// res.send('Reminders to process today: ' + results.length);
+				// res.send(results);
+				res.render('delivery-today', {
+					results: results
+				})
+			}
+		})
+	}, // end of 'today' controller
 
 	preferences: function(req, res) {
 		res.send(200);

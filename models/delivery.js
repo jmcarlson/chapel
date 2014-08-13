@@ -7,7 +7,8 @@ var mongoose = require('mongoose');
 var Delivery = mongoose.model('delivery', {
 	id: mongoose.Schema.Types.ObjectId,
 	lead_id: mongoose.Schema.Types.ObjectId,
-	delivery: Date
+	delivery: Date,
+	status: String
 });
 
 module.exports = Delivery;
