@@ -72,7 +72,7 @@ var controller = {
 				// End of debug code
 
 				res.render('index', {
-					labelData: results[0][0],
+					labelData: results[0][0].toObject(),
 					leadsData: results[1],
 					scheduleData: results[2][0]
 				})

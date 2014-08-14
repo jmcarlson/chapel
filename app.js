@@ -40,5 +40,5 @@ app.get('/today', controller.today);
 
 var server = app.listen(process.env.PORT || 3000, function() {
 	console.log('Express server listening on port ' + server.address().port);
-	setInterval(function() { scheduler.process2(); }, 20000);
+	// setInterval(function() { scheduler.process2(); }, 20000);
 });
