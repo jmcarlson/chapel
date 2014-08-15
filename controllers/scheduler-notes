@@ -1,0 +1,29 @@
+scheduler.js troubleshooting:
+
+Express server listening on port 3000
+
+======== DEBUG s ========
+Reminder id:  53ee53c0d4f4cb3432ecb870
+Lead id:  53ee53c0d4f4cb3432ecb86f
+Email template:  { to: 'jcarl72@gmail.com',
+  from: 'system@refactoru.com',
+  subject: 'Follow up required: jon carlson jon@gmail.com 123',
+  text: 'jon@gmail.com\n123' }
+======== DEBUG e ========
+
+======== DEBUG s ========
+Reminder id:  53ee53ccd4f4cb3432ecb873
+Lead id:  53ee53ccd4f4cb3432ecb872
+Email template:  { to: 'jcarl72@gmail.com',
+  from: 'system@refactoru.com',
+  subject: 'Follow up required: rian haag rian@gmail.com 345',
+  text: 'rian@gmail.com\n345' }
+======== DEBUG e ========
+
+Reminder id 1:  53ee53ccd4f4cb3432ecb873
+sendGrid status:  { message: 'success' }
+Reminder id 2:  53ee53ccd4f4cb3432ecb873
+
+Reminder id 1:  53ee53ccd4f4cb3432ecb873
+sendGrid status:  { message: 'success' }
+Reminder id 2:  53ee53ccd4f4cb3432ecb873

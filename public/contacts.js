@@ -265,6 +265,11 @@ $(document).on('ready', function() {
 	 		}
 	 	};
 
+		$('#cd01').val('');
+		$('#cd02').val('');
+		$('#cd03').val('');
+		$('#cd04').val('');
+
 		// Add contact data to database
 		$.post('/write', temp, function(results) {
 			appendNewLeadHtml(results);
