@@ -18,7 +18,7 @@ var controller = {
 
 			// Extract label data
 			function(callback) {
-				Label.find({lang: 'English'}, function(error, labels) {
+				Label.findOne({lang: 'English'}, function(error, labels) {
 					if(error) {
 						return callback(error);
 					}
@@ -72,9 +72,9 @@ var controller = {
 				// End of debug code
 
 				res.render('index', {
-					labelData: results[0][0].toObject(),
-					leadsData: results[1],
-					scheduleData: results[2][0]
+					labelData: results[0].toJSON(),
+					leadsData: results[1]
+					// scheduleData: results[2][0]
 				})
 				// res.send(200);
 			}
@@ -116,7 +116,7 @@ var controller = {
 											console.log(error);
 										}
 										else {
-											console.log('Added email schedule: ', delivery);
+											// console.log('Added email schedule: ', delivery);
 										}
 									})
 								};
