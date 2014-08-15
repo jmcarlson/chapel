@@ -21,7 +21,7 @@ var scheduler = {
 			to: toEmail,
 			from: 'system@refactoru.com',
 			subject: 'Follow up required: ' + lead.cd01 + ' ' + lead.cd02 + ' ' + lead.cd03 + ' ' + lead.cd04,
-			text: lead.cd03 + '\n' + lead.cd04
+			text: lead.cd03 + '<br>' + lead.cd04
 			};
 		return newEmail;
 	},
@@ -83,11 +83,6 @@ var scheduler = {
 				console.log(error);
 			}
 			else {
-
-				// console.log('emails: ', emails);
-				// console.log('leads: ', leads);
-				// console.log('toEmail: ', toEmail);	
-
 				// Loop through leads and perform async.series
 				// to 1) send email  2) update delivery entry
 				for (var i = 0; i < leads.length; i++) {
@@ -102,75 +97,38 @@ var scheduler = {
 					var email = scheduler.createEmail(tmpLead, toEmail);
 
 					// debug messages
-					if(1) {
+					if(0) {
 						console.log('======== DEBUG s ========');
-						// console.log('Found email reminders to process: ', tmpDelivery);
-						// console.log('Processing email for lead: ', tmpLead);
+						console.log('Found email reminders to process: ', tmpDelivery);
+						console.log('Processing email for lead: ', tmpLead);
 						console.log('Reminder id: ', tmpDeliveryId);
 						console.log('Lead id: ', tmpLeadId);
 						console.log('Email template: ', email);
 						console.log('======== DEBUG e ========');
 					}
 
-					sendgrid.send(email, function(error, rc) {
-						console.log('Reminder id 1: ', tmpDeliveryId);
-						if(error) { 
-							console.log(error);
-						}
-						else { 
-							console.log('sendGrid status: ', rc);
-							console.log('Reminder id 2: ', tmpDeliveryId);
-							// Delivery.update({_id: tmpDeliveryId}, {status: 'Completed'}, function(error, affected, rc) {
-							// 	if(error) {
-							// 		console.log(error);
-							// 	}
-							// 	else {
-							// 		console.log('MongoDB update: ', rc);
-							// 	}
-							// });
-						}
-					});
+					// Define/invoke iffe to eliminate variable reference issue
+					// with callbacks
+					(function(tmpDeliveryId) { 
+						sendgrid.send(email, function(error, rc) {
+							if(error) { 
+								console.log(error);
+							}
+							else { 
+								console.log('sendGrid status: ', rc);
+								Delivery.update({_id: tmpDeliveryId}, {status: 'Completed'}, function(error, affected, rc) {
+									if(error) {
+										console.log(error);
+									}
+									else {
+										console.log('MongoDB update: ', rc);
+									}
+								});
+							}
+						});
+					})(tmpDeliveryId);
 
-
-					// Use async to ensure email delivery and update
-					// async.series([
-					// 	function(callback) {
-					// 		// callback(null,'done');
-					// 		sendgrid.send(email, function(error, rc) {
-					// 			if(error) { 
-					// 				console.log(error);
-					// 				return callback(error);
-					// 			}
-					// 			else { 
-					// 				// console.log('sendGrid status: ', rc);
-					// 				callback(error, rc);
-					// 			}
-					// 		});
-					// 	},
-					// 	function(callback) {
-					// 		Delivery.update({_id: tmpObj[0]._id}, {status: 'Completed'}, function(error, affected, rc) {
-					// 			if(error) {
-					// 				console.log(error);
-					// 				return callback(error);
-					// 			}
-					// 			else {
-					// 				// console.log('MongoDB update: ', rc);
-					// 				callback(error, rc);
-					// 			}
-
-					// 		});
-					// 	}
-					// ], function(error, results) {
-					// 		if(error) {
-					// 			console.log(error);
-					// 			console.log(results);
-					// 		}
-					// 		else {
-					// 			console.log('[ ' + moment().format('YYYY/MM/DD HH:mm:ss') + ' ] Successfully processed reminder(s)');
-					// 			console.log(results);
-					// 		}
-					// });  // end of async
-				};		
+				}; // end of for loop	
 			}
 			// (error) ? console.log(error) : console.log(results);
 		});  // end of async
