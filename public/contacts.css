@@ -101,6 +101,8 @@
 
 .preferences {
 	display: none;
+	width: 50%;
+	/*border: 1px solid LightGray;*/
 }
 
 .delivery-container {
@@ -112,4 +114,8 @@
 	display: inline-block;
 	padding-left: 10px;
 	margin: 5px;
+}
+
+.core-form {
+	margin-top: 10px;
 }

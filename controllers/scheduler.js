@@ -67,12 +67,12 @@ var scheduler = {
 				callback();
 			},
 			function(callback) {
-				Preference.findOne({name: 'delivery'}, function(error, results) {
+				Preference.findOne({}, function(error, results) {
 					if(error) {
 						return callback(error);
 					}
 					else {
-						toEmail = results.value;
+						toEmail = results.delivery;
 						callback(error, results);
 					}
 				})

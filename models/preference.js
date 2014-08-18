@@ -6,8 +6,9 @@ var mongoose = require('mongoose');
 
 var Preference = mongoose.model('Preference', {
 	id: mongoose.Schema.Types.ObjectId,
-	name: String,
-	value: String
+	delivery: String,
+	language: String,
+	schedule: String
 });
 
 module.exports = Preference;

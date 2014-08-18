@@ -128,30 +128,32 @@ var renderLeadDetailHtml = function(results) {
 
 // jQuery/AJAX template
 var appendNewLeadHtml = function(leadData) {
-	$.get('/crm/label', function(labelData) {
-		var newHtml = $('<div id="' + leadData._id + '" class="debug1 core-data col-xs-12 col-sm-12 col-md-12">');
-		newHtml.append('<div class="icon-inline icon-menu col-xs-12 col-sm-1 col-md-1">');
-		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd01);
-		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd02);
-		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-3">' + leadData.cd03);
-		newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd04);
+	$.get('/preferences', function(prefs) {
+		$.get('/crm/label/' + prefs.language, function(labelData) {
+			var newHtml = $('<div id="' + leadData._id + '" class="debug1 core-data col-xs-12 col-sm-12 col-md-12">');
+			newHtml.append('<div class="icon-inline icon-menu col-xs-12 col-sm-1 col-md-1">');
+			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd01);
+			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd02);
+			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-3">' + leadData.cd03);
+			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd04);
 
-		var leadKeys = _.sortBy(_.keys(leadData), function(str) {
-			return str;
-		});
+			var leadKeys = _.sortBy(_.keys(leadData), function(str) {
+				return str;
+			});
 
-		var newHtml2 = $('<div id="' + leadData._id + '" class="debug1 user-data">');
-		// for (var prop in leadData) {
-		for (var i = 0; i < leadKeys.length; i++) {
-			if(leadKeys[i][0] === 'c') {
-				newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
-				newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
+			var newHtml2 = $('<div id="' + leadData._id + '" class="debug1 user-data">');
+			// for (var prop in leadData) {
+			for (var i = 0; i < leadKeys.length; i++) {
+				if(leadKeys[i][0] === 'c') {
+					newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
+					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
+				}
 			}
-		}
 
-		newHtml.appendTo('#primary');
-		newHtml2.appendTo('#primary');
-	})
+			newHtml.appendTo('#primary');
+			newHtml2.appendTo('#primary');
+		}); // labels
+	}); // prefs
 }
 
 //
@@ -189,7 +191,7 @@ $(document).on('ready', function() {
 	// Event handlers
 	//
 
-	$('.dropdown-toggle').dropdown();
+	// $('.dropdown-toggle').dropdown();
 
 	$(document).on('click', '#home', function(e) {
 		// renderInputs();
@@ -255,7 +257,9 @@ $(document).on('ready', function() {
 		e.preventDefault();
 
 		// Extract form data
-		var formData = $('.form-group').find('[class=form-control]');
+		var formData = $('.core-form').find('.form-control');
+
+		console.log(formData);
 
 		// Create temporary object for AJAX call
 		var temp = {};
@@ -279,19 +283,36 @@ $(document).on('ready', function() {
 
 	$('.preferences-form').on('submit', function(e) {
 		e.preventDefault();
-		var formData = $(this).find('[class=form-control]');
-		console.log('pref-forms: ', formData);
+		var formData = $(this).find('.form-control');
+		// console.log('pref-forms: ', formData);
 		var temp = {};
 	 	for (var i = 0; i < formData.length; i++) {
-	 		if(formData[i].value) {
+	 		if(formData[i].id === 'delivery' || formData[i].id === 'schedule') {
 	 			temp[formData[i].id] = formData[i].value;
 	 		}
+	 		if(formData[i].selected) {
+	 			temp['language'] = formData[i].value;
+	 		}
 	 	};
+	 	temp['id'] = $('#prefs-submit').attr('data-id');
 
 		// Add contact data to database
 		$.post('/preferences', temp, function(results) {
+			if(results === 'OK') {
+				$.get('/crm/label/' + temp.language, function(results) {
+					for (prop in results) {
+						if(prop[0] === 'c') {
+							$('.'+prop).text(results[prop]);
+							if(prop === 'cd01' || prop === 'cd02' || prop === 'cd03' || prop === 'cd04') {
+								$('#'+prop).attr('placeholder', results[prop]);
+							}
+						}
+					}
+				})
+			}
 			// appendNewLeadHtml(results);
 		});
+		// $('.preferences').hide();
 	});
 
 

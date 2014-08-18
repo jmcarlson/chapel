@@ -6,7 +6,7 @@ block content
 		.page-header.h3 Contacts 
 			button(id='home' type='button' class='btn btn-default btn-sm')
 				.glyphicon.glyphicon-home  Home
-			button(id='settings' type='button' class='btn btn-default btn-sm')
+			//- button(id='settings' type='button' class='btn btn-default btn-sm')
 				.glyphicon.glyphicon-cog  User Fields
 			button(id='tools' type='button' class='btn btn-default btn-sm')
 				.glyphicon.glyphicon-wrench  Tools
@@ -22,17 +22,28 @@ block content
 				button(id='pdfgen' type='file' class='btn btn-default')
 					.glyphicon.glyphicon-print  PDF
 		//- Preferences
-		h5.preferences
-			form(class='form-inline preferences-form' role='form' method='post')
+		.preferences
+			form(class='form-horizontal preferences-form' role='form' method='post')
 				.form-group
-					input(type='text' class='form-control' id='lang' placeholder='Language')
-				button(type='submit' class='btn btn-default') Save
-			.btn-group
-				button(type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown') Default Language 
-					.caret
-				ul(class='dropdown-menu' role='menu')
-					li English
-					li Spanish
+					p Delivery Email
+						input(type='text' class='form-control' id='delivery' value='#{prefsData.delivery}')
+					p Delivery Schedule
+						input(type='text' class='form-control' id='schedule' value='#{prefsData.schedule}')
+					p Default Language
+						select(class='btn btn-default form-control')
+							if prefsData.language === "English"
+								option(id='English' class='form-control' value='English' selected) English
+							else
+								option(id='English' class='form-control' value='English') English
+							if prefsData.language === "Spanish"
+								option(id='English' class='form-control' value='Spanish' selected) Spanish
+							else
+								option(id='English' class='form-control' value='Spanish') Spanish
+							if prefsData.language === "French"
+								option(id='English' class='form-control' value='French' selected) French
+							else
+								option(id='English' class='form-control' value='French') French
+					button(id='prefs-submit' type='submit' class='btn btn-default' data-id='#{prefsData._id}') Save
 		//- User defined inputs form
 		#user-fields-form.col-md-12
 			.col-md-4

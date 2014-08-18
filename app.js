@@ -22,7 +22,9 @@ app.post('/write', controller.write);
 app.get('/crm/lead', controller.lead);
 app.get('/crm/lead/:id', controller.leadById);
 app.get('/crm/label', controller.label);
+app.get('/crm/label/:name', controller.labelByName);
 app.get('/preferences', controller.preferences);
+app.post('/preferences', controller.preferences_post);
 app.get('/delivery', controller.delivery);
 app.get('/today', controller.today);
 
@@ -40,5 +42,5 @@ app.get('/today', controller.today);
 
 var server = app.listen(process.env.PORT || 3000, function() {
 	console.log('Express server listening on port ' + server.address().port);
-	setInterval(function() { scheduler.process2(); }, 60000);
+	// setInterval(function() { scheduler.process2(); }, 60000);
 });
