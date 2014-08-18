@@ -36,9 +36,9 @@ block content
 							else
 								option(id='English' class='form-control' value='English') English
 							if prefsData.language === "Spanish"
-								option(id='English' class='form-control' value='Spanish' selected) Spanish
+								option(id='Spanish' class='form-control' value='Spanish' selected) Spanish
 							else
-								option(id='English' class='form-control' value='Spanish') Spanish
+								option(id='Spanish' class='form-control' value='Spanish') Spanish
 					button(id='prefs-submit' type='submit' class='btn btn-default' data-id='#{prefsData._id}') Save
 		//- User defined inputs form
 		#user-fields-form.col-md-12
@@ -76,26 +76,27 @@ block content
 				input(type='text' class='form-control' id='cd04' placeholder='#{labelData.cd04}')
 			button(type='submit' class='btn btn-default') Add Contact
 		//- Custom user form
-		form(class='form-inline user-form' role='form' method='post')
+		//- form(class='form-inline user-form' role='form' method='post')
+		form(class='form-inline core-form user-form' role='form' method='post')
 			.form-group
 				p Lead Source
 				select(class='btn btn-default form-control')
-					option(class='form-control' value='ccr' selected) Current client referral
-					option(class='form-control' value='pcr') Previous client referral
-					option(class='form-control' value='pc') Previous client
-					option(class='form-control' value='pf') Personal friend
-					option(class='form-control' value='rltr') Realtor
-					option(class='form-control' value='pad') Print ad (sign, flyer, etc)
-					option(class='form-control' value='wad') Web ad (Zillow, etc)
-					option(class='form-control' value='bus') Business People
-					option(class='form-control' value='bldr') Builder
-				input(type='text' class='form-control' size='60' id='test' placeholder='Source details')
+					option(class='form-control lead-source' value='ccr') Current client referral
+					option(class='form-control lead-source' value='pcr') Previous client referral
+					option(class='form-control lead-source' value='pc') Previous client
+					option(class='form-control lead-source' value='pf') Personal friend
+					option(class='form-control lead-source' value='rltr') Realtor
+					option(class='form-control lead-source' value='pad') Print advertisement
+					option(class='form-control lead-source' value='wad') Web advertisement
+					option(class='form-control lead-source' value='bus') Business People
+					option(class='form-control lead-source' value='bldr') Builder
+				input(type='text' class='form-control' size='60' id='cd09' placeholder='Source details')
 				p Working with agent? 
 				select(class='btn btn-default form-control')
-					option(class='form-control' value='ccr' selected) No
-					option(class='form-control' value='ccr') Yes
+					option(class='form-control working-with-agent' value='ccr' selected) No
+					option(class='form-control working-with-agent' value='ccr') Yes
 				p Notes
-				textarea(class='form-control' rows='5' cols='80')
+				textarea(class='form-control' id='cd11' rows='5' cols='80')
 
 
 		//- Primary/core data rows

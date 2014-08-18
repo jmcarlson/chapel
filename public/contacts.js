@@ -130,7 +130,7 @@ var renderLeadDetailHtml = function(results) {
 var appendNewLeadHtml = function(leadData) {
 	$.get('/preferences', function(prefs) {
 		$.get('/crm/label/' + prefs.language, function(labelData) {
-			var newHtml = $('<div id="' + leadData._id + '" class="debug1 core-data col-xs-12 col-sm-12 col-md-12">');
+			var newHtml = $('<div class="debug1 core-data col-xs-12 col-sm-12 col-md-12 ' + leadData._id + '">');
 			newHtml.append('<div class="icon-inline icon-menu col-xs-12 col-sm-1 col-md-1">');
 			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd01);
 			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd02);
@@ -141,7 +141,7 @@ var appendNewLeadHtml = function(leadData) {
 				return str;
 			});
 
-			var newHtml2 = $('<div id="' + leadData._id + '" class="debug1 user-data">');
+			var newHtml2 = $('<div class="debug1 user-data ' + leadData._id + '">');
 			// for (var prop in leadData) {
 			for (var i = 0; i < leadKeys.length; i++) {
 				if(leadKeys[i][0] === 'c') {
@@ -149,6 +149,8 @@ var appendNewLeadHtml = function(leadData) {
 					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
 				}
 			}
+
+			newHtml2.append( '<button type="button" class="btn btn-default detail-item-delete col-xs-2 col-sm-2 col-md-1" data-id="' + leadData._id + '">Delete</button>' );
 
 			newHtml.appendTo('#primary');
 			newHtml2.appendTo('#primary');
@@ -258,9 +260,7 @@ $(document).on('ready', function() {
 
 		// Extract form data
 		var formData = $('.core-form').find('.form-control');
-
-		console.log(formData);
-
+		
 		// Create temporary object for AJAX call
 		var temp = {};
 	 	for (var i = 0; i < formData.length; i++) {
@@ -268,6 +268,24 @@ $(document).on('ready', function() {
 	 			temp[formData[i].id] = formData[i].value;
 	 		}
 	 	};
+		
+		var leadSource = $('.user-form').find('.lead-source');
+		// console.log(leadSource[0]);
+		for (var i = 0; i < leadSource.length; i++) {
+			if(leadSource[i].selected) {
+				temp['cd08'] = leadSource[i].text;
+			}
+		};
+
+		var workingWithAgent = $('.user-form').find('.working-with-agent');
+		// console.log(leadSource[0]);
+		for (var i = 0; i < workingWithAgent.length; i++) {
+			if(workingWithAgent[i].selected) {
+				temp['cd10'] = workingWithAgent[i].text;
+			}
+		};
+
+		console.log(temp);
 
 		// Add contact data to database
 		$.post('/write', temp, function(results) {
@@ -278,6 +296,9 @@ $(document).on('ready', function() {
 		$('#cd02').val('');
 		$('#cd03').val('');
 		$('#cd04').val('');
+		$('#cd09').val('');
+		$('#cd11').val('');
+		$('.user-form').hide();
 
 	});
 
@@ -312,7 +333,7 @@ $(document).on('ready', function() {
 			}
 			// appendNewLeadHtml(results);
 		});
-		// $('.preferences').hide();
+		$('.preferences').hide();
 	});
 
 
@@ -417,12 +438,16 @@ $(document).on('ready', function() {
 	$(document).on('click', '.detail-item-delete', function(e) {
 		// Retrieve data id from delete button
 		var removeId = $(this).data('id').toString();
+		var temp = {id: removeId};
 
-		// Filter array of data objects; ignoring the object to remove
-		leadsData = leadsData.filter(function (el) { return el.id !== removeId });
+		// Remove lead and delivery data from database
+		$.post('/crm/lead/remove', temp, function(results) {
+			console.log('delete: ', results);
+		});
+		console.log('delete: ', temp);
 		
 		// Remove all elements associated with the data id (core-data, user-data classes)
-		var removeClass = '.id' + removeId;
+		var removeClass = '.' + removeId;
 		$(removeClass).remove();
 	});
 
@@ -469,6 +494,5 @@ $(document).on('ready', function() {
     		$(this).hide();
     		renderData(leadsData);
     });
-
 	
 });

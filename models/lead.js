@@ -16,7 +16,11 @@ var Lead = mongoose.model('Lead', {
 	cd04: { type: String, default: '' },
 	cd05: { type: Date, default: Date.now },
 	cd06: { type: Date, default: Date.now },
-	cd07: { type: [], default: [1,3,5,7,14]}
+	cd07: { type: [],},
+	cd08: { type: String},
+	cd09: { type: String},
+	cd10: { type: String},
+	cd11: { type: String}
 });
 
 module.exports = Lead;

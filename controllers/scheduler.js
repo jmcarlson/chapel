@@ -41,8 +41,7 @@ var scheduler = {
 					}
 					else {
 						if(results.length === 0) {
-							console.log('[ ' + moment().format('YYYY/MM/DD HH:mm:ss') + ' ] No email reminders to process');
-							return callback(error);
+							return callback('[ ' + moment().format('YYYY/MM/DD HH:mm:ss') + ' ] No email reminders to process');
 						}
 						else {
 							for (var i = 0; i < results.length; i++) {
@@ -85,6 +84,7 @@ var scheduler = {
 			else {
 				// Loop through leads and perform async.series
 				// to 1) send email  2) update delivery entry
+				console.log(leads);
 				for (var i = 0; i < leads.length; i++) {
 
 					var tmpLead = leads[i];

@@ -31,7 +31,7 @@ var controller = {
 
 			// Extract label data
 			function(prefs, callback) {
-				console.log('callback prefs: ', prefs);
+				// console.log('callback prefs: ', prefs);
 				Label.findOne({lang: prefs.language}, function(error, labels) {
 					if(error) {
 						return callback(error);
@@ -44,8 +44,8 @@ var controller = {
 
 			// test
 			function(prefs, labels, callback) {
-				console.log('test callback: ', prefs);
-				console.log('test callback: ', labels);
+				// console.log('test callback: ', prefs);
+				// console.log('test callback: ', labels);
 				res.render('index', {
 					prefsData: prefs.toJSON(),
 					labelData: labels.toJSON()
@@ -80,6 +80,10 @@ var controller = {
 				if(req.body.cd03) { lead.cd03 = req.body.cd03; }
 				if(req.body.cd04) { lead.cd04 = req.body.cd04; }
 				lead.cd07 = pref_results.schedule;
+				if(req.body.cd08) { lead.cd08 = req.body.cd08; }
+				if(req.body.cd09) { lead.cd09 = req.body.cd09; }
+				if(req.body.cd10) { lead.cd10 = req.body.cd10; }
+				if(req.body.cd11) { lead.cd11 = req.body.cd11; }
 				lead.save(function(error, lead_results) {
 					if(error) {
 						console.log(error);
@@ -213,7 +217,26 @@ var controller = {
 				res.send(200);
 			}
 		});
-	} // end of 'preferences_post' controller
+	}, // end of 'preferences_post' controller
+
+	leadRemoveById: function(req, res) {
+		console.log('Removing: ', req.body.id);
+		Delivery.remove({lead_id: req.body.id}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				Lead.remove({_id: req.body.id}, function(error, results) {
+					if(error) {
+						console.log(error);
+					}
+					else {
+						res.send(200);
+					}
+				})
+			}
+		})
+	}  // end of 'leadRemoveById'
 
 }
 
