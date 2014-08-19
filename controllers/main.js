@@ -274,8 +274,8 @@ var controller = {
 
 	sendgrid: function(req, res) {
 
-		console.log('sendGrid: ', req.body);
-		res.send(200);
+		console.log('sendGrid: ', req);
+		res.status(200);
 
 	} // end of 'sendgrid' controller
 
