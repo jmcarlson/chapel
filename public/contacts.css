@@ -107,13 +107,15 @@
 
 .delivery-container {
 	border: 1px solid LightGray;
-	width: 70%;
+	width: 75%;
 }
 
 .delivery {
 	display: inline-block;
 	padding-left: 10px;
+	padding-right: 10px;
 	margin: 5px;
+	width: 200px;
 }
 
 .core-form {

@@ -494,6 +494,11 @@ $(document).on('ready', function() {
 		console.log('csvgen clicked');
 		// var blob = new Blob(["hello, world!"], {type: "text/plain;charset=utf-8"});
 		// saveAs(blob, "hello.txt");
+		// temp sendGrid test
+		var test = {name: 'test', type: 'sendGrid'};
+		$.post('/sendgrid', test, function(results) {
+			console.log(results);
+		})
 	});
 	
 });
