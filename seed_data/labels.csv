@@ -1,3 +1,3 @@
-"lang", "cd01", "cd02", "cd03", "cd04", "cd05", "cd06", "cd07", "cd08", "cd09", "cd10", "cd11"
-"English", "First Name", "Last Name", "Email", "Phone", "Created", "Last Update", "Schedule", "Lead Source", "Lead Source Details", "Working with Agent?", "Notes"
-"Spanish", "Nombre de Pila", "Apellido", "Email", "Telefono", "Creado", "Ultima actualizacian", "Horario", "Lead Source", "Lead Source Details", "Notes"
+"lang", "cd01", "cd02", "cd03", "cd04", "cd05", "cd06", "cd07", "cd08", "cd09", "cd10", "cd11", "cb01", "cb02", "cb03", "cb04"
+"English", "First Name", "Last Name", "Email", "Phone", "Created", "Last Update", "Schedule", "Lead Source", "Lead Source Details", "Working with Agent?", "Notes", " Home", " Tools", " Preferences", "Add Contact"
+"Spanish", "Nombre de Pila", "Apellido", "Email", "Telefono", "Creado", "Ultima actualizacian", "Horario", "Lead Source", "Lead Source Details", "Working with Agent?", "Notes", " Casa", " Utiles", " Preferencias", "Anadir Contacto"

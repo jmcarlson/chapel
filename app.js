@@ -22,12 +22,16 @@ app.post('/write', controller.write);
 app.get('/crm/lead', controller.lead);
 app.get('/crm/lead/:id', controller.leadById);
 app.post('/crm/lead/:id', controller.leadRemoveById);
+app.post('/crm/:id', controller.leadUpdateById);
 app.get('/crm/label', controller.label);
 app.get('/crm/label/:name', controller.labelByName);
+app.get('/crm/csv', controller.csvgen);
 app.get('/preferences', controller.preferences);
 app.post('/preferences', controller.preferences_post);
 app.get('/delivery', controller.delivery);
 app.get('/today', controller.today);
+// sendGrid parse interface
+app.post('/sendgrid', controller.sendgrid);
 
 // Refactor controller routes
 // app.get('/', controller.index)

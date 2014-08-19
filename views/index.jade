@@ -3,21 +3,24 @@ extends layout
 block content
 	.container
 		//- Header menu
-		.page-header.h3 Contacts 
+		.page-header.h3.cust-header Lead Tracker  
 			button(id='home' type='button' class='btn btn-default btn-sm')
-				.glyphicon.glyphicon-home  Home
+				.glyphicon.glyphicon-home.cb01 #{labelData.cb01}
 			//- button(id='settings' type='button' class='btn btn-default btn-sm')
 				.glyphicon.glyphicon-cog  User Fields
 			button(id='tools' type='button' class='btn btn-default btn-sm')
-				.glyphicon.glyphicon-wrench  Tools
+				.glyphicon.glyphicon-wrench.cb02 #{labelData.cb02}
 			button(id='preferences' type='button' class='btn btn-default btn-sm')
-				.glyphicon.glyphicon-list-alt  Preferences
+				.glyphicon.glyphicon-list-alt.cb03 #{labelData.cb03}
 		//- Tools form
 		h5.tools
 			p Export contacts to CSV
 				input(id='csvexp' type='file' name='csvexp' class='btn btn-default')
 			p Import contacts using CSV file
 				input(id='csvimp' type='file' name='csvimp' class='btn btn-default')
+			p Create CSV export
+				button(id='csvgen' type='file' class='btn btn-default')
+					.glyphicon.glyphicon-print  CSV
 			p Create PDF
 				button(id='pdfgen' type='file' class='btn btn-default')
 					.glyphicon.glyphicon-print  PDF
@@ -74,13 +77,14 @@ block content
 				input(type='text' class='form-control' id='cd03' placeholder='#{labelData.cd03}')
 			.form-group
 				input(type='text' class='form-control' id='cd04' placeholder='#{labelData.cd04}')
-			button(type='submit' class='btn btn-default') Add Contact
+			button(type='submit' class='btn btn-default cb04') #{labelData.cb04}
 		//- Custom user form
 		//- form(class='form-inline user-form' role='form' method='post')
 		form(class='form-inline core-form user-form' role='form' method='post')
 			.form-group
 				p Lead Source
 				select(class='btn btn-default form-control')
+					option(class='form-control lead-source' value='none') None
 					option(class='form-control lead-source' value='ccr') Current client referral
 					option(class='form-control lead-source' value='pcr') Previous client referral
 					option(class='form-control lead-source' value='pc') Previous client

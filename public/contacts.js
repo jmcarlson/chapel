@@ -146,11 +146,12 @@ var appendNewLeadHtml = function(leadData) {
 			for (var i = 0; i < leadKeys.length; i++) {
 				if(leadKeys[i][0] === 'c') {
 					newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
-					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data">' + leadData[leadKeys[i]]);
+					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data" data-prop=' + leadKeys[i] + '>' + leadData[leadKeys[i]]);
 				}
 			}
 
 			newHtml2.append( '<button type="button" class="btn btn-default detail-item-delete col-xs-2 col-sm-2 col-md-1" data-id="' + leadData._id + '">Delete</button>' );
+			newHtml2.append( '<button type="button" class="btn btn-default detail-item-save col-xs-2 col-sm-2 col-md-1" data-id="' + leadData._id + '">Save</button>' );
 
 			newHtml.appendTo('#primary');
 			newHtml2.appendTo('#primary');
@@ -442,13 +443,11 @@ $(document).on('ready', function() {
 
 		// Remove lead and delivery data from database
 		$.post('/crm/lead/remove', temp, function(results) {
-			console.log('delete: ', results);
+			console.log('delete results: ', results);
+			var removeClass = '.' + removeId;
+			$(removeClass).remove();
 		});
-		console.log('delete: ', temp);
 		
-		// Remove all elements associated with the data id (core-data, user-data classes)
-		var removeClass = '.' + removeId;
-		$(removeClass).remove();
 	});
 
 	$(document).on('click', '.user-detail-data', function() {
@@ -472,27 +471,29 @@ $(document).on('ready', function() {
 	$(document).on('click', '.detail-item-save', function(){
 			// Retrieve the data id from the save button
     		var dataId = $(this).data('id');
-    		// console.log('Working with rec id: ' + dataId);
 
     		// Retrieve all elements with an id equal to the above
     		var temp = $(this).parent().find('.user-detail-data');
-			// var temp = $(this).parent().find('[data-id=' + dataId + ']');
 
     		// Retrieve data object with the id equal to the above
-    		var tmpObject = _.findWhere(leadsData, {id: dataId.toString()});
+    		var tmpObject = {};
 
     		for (var i = 0; i < temp.length; i++) {
     			var tmpProp = $(temp[i]).data('prop');
-    			// console.log($(temp[i]).data('prop'));
-    			// console.log('dom: ' + $(temp[i]).text() );
-    			// console.log('obj: ' + tmpObject[$(temp[i]).data('prop')]);
     			if(tmpObject[$(temp[i]).data('prop')] !== $(temp[i]).text()) {
-    				// console.log('this changed' + $(temp[i]).data('prop') );
     				tmpObject[$(temp[i]).data('prop')] = $(temp[i]).text();
     			}
     		};
     		$(this).hide();
-    		renderData(leadsData);
+    		$.post('/crm/' + dataId, tmpObject, function(results) {
+    			console.log('put: ', results);
+    		})
     });
+
+	$(document).on('click', '#csvgen', function() {
+		console.log('csvgen clicked');
+		// var blob = new Blob(["hello, world!"], {type: "text/plain;charset=utf-8"});
+		// saveAs(blob, "hello.txt");
+	});
 	
 });

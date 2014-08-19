@@ -236,7 +236,48 @@ var controller = {
 				})
 			}
 		})
-	}  // end of 'leadRemoveById'
+	},  // end of 'leadRemoveById'
+
+	leadUpdateById: function(req, res) {
+
+		console.log('leadUpdateById: ', req.params.id);
+		console.log('leadUpdateById: ', req.body);
+
+		Lead.update({_id: req.params.id}, req.body, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				console.log('leadUpdateById results: ', results);
+			}
+		});
+
+	},  // end of 'leadRemoveById' controller
+
+	csvgen: function(req, res) {
+
+		Lead.find({}, function(error, results) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				// console.log(results);
+				for (var i = 0; i < results.length; i++) {
+					// console.log(results[i]);
+					console.log(results[i].cd01+','+results[i].cd02+','+results[i].cd03+','+results[i].cd04);
+				};
+				res.send(results);
+			}
+		});
+
+	},  // end of 'csvgen' controller
+
+	sendgrid: function(req, res) {
+
+		console.log('sendGrid: ', req.body);
+		res.send(200);
+
+	} // end of 'sendgrid' controller
 
 }
 
