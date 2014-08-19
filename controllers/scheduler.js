@@ -84,7 +84,7 @@ var scheduler = {
 			else {
 				// Loop through leads and perform async.series
 				// to 1) send email  2) update delivery entry
-				console.log(leads);
+				// console.log(leads);
 				for (var i = 0; i < leads.length; i++) {
 
 					var tmpLead = leads[i];
@@ -168,9 +168,9 @@ var scheduler = {
 										subject: 'Follow up required: ' + lead.cd01 + ' ' + lead.cd02 + ' ' + lead.cd03 + ' ' + lead.cd04,
 										text: lead.cd01
 									}
-									console.log('Email: ', email);
-									console.log('temp1: ', temp1);
-									console.log('temp2: ', temp2);
+									// console.log('Email: ', email);
+									// console.log('temp1: ', temp1);
+									// console.log('temp2: ', temp2);
 									// console.log('Delivery id: ', process.deliveries[i].id);
 									// console.log('date: ', moment(todayDate));
 									// Delivery email

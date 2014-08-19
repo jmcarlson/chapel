@@ -220,7 +220,7 @@ var controller = {
 	}, // end of 'preferences_post' controller
 
 	leadRemoveById: function(req, res) {
-		console.log('Removing: ', req.body.id);
+		// console.log('Removing: ', req.body.id);
 		Delivery.remove({lead_id: req.body.id}, function(error, results) {
 			if(error) {
 				console.log(error);
@@ -240,8 +240,8 @@ var controller = {
 
 	leadUpdateById: function(req, res) {
 
-		console.log('leadUpdateById: ', req.params.id);
-		console.log('leadUpdateById: ', req.body);
+		// console.log('leadUpdateById: ', req.params.id);
+		// console.log('leadUpdateById: ', req.body);
 
 		Lead.update({_id: req.params.id}, req.body, function(error, results) {
 			if(error) {
