@@ -302,11 +302,11 @@ var controller = {
 		//  - forwarding directly will not have
 		if(tempx.indexOf('For\r\nSale: ') === -1) {
 			console.log('zz1');
-			var temp4 = tempx.split('For\r\nSale: ');
+			var temp4 = tempx.split('For Sale: ');
 		}
 		else {
 			console.log('zz1');
-			var temp4 = tempx.split('For Sale: ');
+			var temp4 = tempx.split('For\r\nSale: ');
 		}
 		console.log('xx1', tempx.indexOf('For\r\nSale: '));
 		console.log('xx2', tempx.indexOf('For Sale: '));
