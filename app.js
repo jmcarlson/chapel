@@ -14,9 +14,8 @@ var app = express();
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
-// app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.json());
 app.get('/crm', controller.index);
 app.post('/write', controller.write);
 app.get('/crm/lead', controller.lead);
