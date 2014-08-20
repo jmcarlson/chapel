@@ -134,8 +134,8 @@ var appendNewLeadHtml = function(leadData) {
 			newHtml.append('<div class="icon-inline icon-menu col-xs-12 col-sm-1 col-md-1">');
 			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd01);
 			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd02);
-			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-3">' + leadData.cd03);
-			newHtml.append('<div class="col-xs-12 col-sm-1 col-md-2">' + leadData.cd04);
+			newHtml.append('<div class="col-xs-12 col-sm-3 col-md-3">' + leadData.cd03);
+			newHtml.append('<div class="col-xs-12 col-sm-6 col-md-3">' + leadData.cd04);
 
 			var leadKeys = _.sortBy(_.keys(leadData), function(str) {
 				return str;
@@ -145,13 +145,13 @@ var appendNewLeadHtml = function(leadData) {
 			// for (var prop in leadData) {
 			for (var i = 0; i < leadKeys.length; i++) {
 				if(leadKeys[i][0] === 'c') {
-					newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-2 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
-					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-10 user-detail-data" data-prop=' + leadKeys[i] + '>' + leadData[leadKeys[i]]);
+					newHtml2.append('<div class="debug2 col-xs-4 col-sm-4 col-md-3 ' + leadKeys[i] + '">' + labelData[leadKeys[i]]);
+					newHtml2.append('<div class="debug2 col-xs-8 col-sm-8 col-md-9 user-detail-data" data-prop=' + leadKeys[i] + '>' + leadData[leadKeys[i]]);
 				}
 			}
 
-			newHtml2.append( '<button type="button" class="btn btn-default detail-item-delete col-xs-2 col-sm-2 col-md-1" data-id="' + leadData._id + '">Delete</button>' );
-			newHtml2.append( '<button type="button" class="btn btn-default detail-item-save col-xs-2 col-sm-2 col-md-1" data-id="' + leadData._id + '">Save</button>' );
+			newHtml2.append( '<button type="button" class="btn btn-default detail-item-delete col-xs-2 col-sm-1 col-md-1" data-id="' + leadData._id + '">Delete</button>' );
+			newHtml2.append( '<button type="button" class="btn btn-default detail-item-save col-xs-2 col-sm-1 col-md-1" data-id="' + leadData._id + '">Save</button>' );
 
 			newHtml.appendTo('#primary');
 			newHtml2.appendTo('#primary');
@@ -492,10 +492,7 @@ $(document).on('ready', function() {
 
 	$(document).on('click', '#csvgen', function() {
 		console.log('csvgen clicked');
-		// var blob = new Blob(["hello, world!"], {type: "text/plain;charset=utf-8"});
-		// saveAs(blob, "hello.txt");
-		// temp sendGrid test
-		var test = {name: 'test', type: 'sendGrid'};
+		var test = {name: 'test', type: 'sendGrid', text: "New Contactsergio9439@att.net7757718382isFor Sale: $259,9003820 Pimlico St, Reno, NV 895124 Beds / 3.0 Baths / 2431 SqFt190 days on Zillow$106 per SqFtListed by: John Wolf (775) 750-4151"};
 		$.post('/sendgrid', test, function(results) {
 			console.log(results);
 		})

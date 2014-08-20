@@ -14,16 +14,11 @@ block content
 				.glyphicon.glyphicon-list-alt.cb03 #{labelData.cb03}
 		//- Tools form
 		h5.tools
-			p Export contacts to CSV
-				input(id='csvexp' type='file' name='csvexp' class='btn btn-default')
-			p Import contacts using CSV file
-				input(id='csvimp' type='file' name='csvimp' class='btn btn-default')
-			p Create CSV export
-				button(id='csvgen' type='file' class='btn btn-default')
-					.glyphicon.glyphicon-print  CSV
-			p Create PDF
-				button(id='pdfgen' type='file' class='btn btn-default')
-					.glyphicon.glyphicon-print  PDF
+			button(id='csvgen' type='file' class='btn btn-default')
+				.glyphicon.glyphicon-file  Create CSV
+			p
+			button(id='pdfgen' type='file' class='btn btn-default')
+				.glyphicon.glyphicon-print  Create PDF
 		//- Preferences
 		.preferences
 			form(class='form-horizontal preferences-form' role='form' method='post')
@@ -70,7 +65,7 @@ block content
 		form(class='form-inline core-form' role='form' method='post')
 			#form-icon.icon-inline.icon-down-open
 			.form-group
-				input(type='text' class='form-control' id='cd01' placeholder='#{labelData.cd01}')
+				input(type='text' class='form-control' id='cd02' placeholder='#{labelData.cd01}')
 			.form-group
 				input(type='text' class='form-control' id='cd02' placeholder='#{labelData.cd02}')
 			.form-group

@@ -75,6 +75,7 @@
 
 .detail-item-delete {
 	background-color: LightGray;
+	margin-right: 1px;
 }
 
 .detail-item-save {
@@ -85,6 +86,7 @@
 .form-control {
 	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-right: 1px;
 }
 
 .user-checkbox {
@@ -96,7 +98,7 @@
 }
 
 .tools > button {
-	display: block;
+	display: inline-block;
 }
 
 .preferences {
@@ -124,4 +126,8 @@
 
 .cust-header {
 	font-style: italic;
+}
+
+.cb04 {
+	background-color: LightGray;
 }

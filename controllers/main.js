@@ -256,26 +256,77 @@ var controller = {
 
 	csvgen: function(req, res) {
 
-		Lead.find({}, function(error, results) {
-			if(error) {
-				console.log(error);
-			}
-			else {
-				// console.log(results);
-				for (var i = 0; i < results.length; i++) {
-					// console.log(results[i]);
-					console.log(results[i].cd01+','+results[i].cd02+','+results[i].cd03+','+results[i].cd04);
-				};
-				res.send(results);
-			}
-		});
+		var temp = "New Contactsergio9439@att.net7757718382is";
+
+		console.log('t1 ', temp.indexOf('New Contacts'));
+
+		// Lead.find({}, function(error, results) {
+		// 	if(error) {
+		// 		console.log(error);
+		// 	}
+		// 	else {
+		// 		// console.log(results);
+		// 		for (var i = 0; i < results.length; i++) {
+		// 			// console.log(results[i]);
+		// 			console.log(results[i].cd01+','+results[i].cd02+','+results[i].cd03+','+results[i].cd04);
+		// 		};
+		// 		res.send(results);
+		// 	}
+		// });
 
 	},  // end of 'csvgen' controller
 
 	sendgrid: function(req, res) {
 
-		console.log('sendGrid: ', req.body.text);
-		res.status(200).end();
+		// console.log('sendGrid: ', req.body.text);
+		// Parse out email and phone
+		var temp = req.body.text;
+		var temp2 = temp.split('New Contact');
+		var temp3 = temp2[1].split('is');
+		var emailRegex = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+		var email = emailRegex.exec(temp3[0]);
+		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+		// Parse out property notes
+		// console.log(req.body.text);
+		var temp4 = temp.split('For Sale: ');
+		var temp5 = temp4[1].split('Listed by:');
+		// console.log('Notes: ',temp5[0]);
+
+
+		Preference.findOne({}, function(error, pref_results) {
+			if(error) {
+				console.log(error);
+				res.status(500).end();
+			}
+			else {
+				// Add future delivery dates to database
+				var schedule = pref_results.schedule.split(',');
+										// Add new lead
+				var lead = new Lead();
+				lead.cd01 = 'None';
+				lead.cd02 = 'None';
+				lead.cd03 = email[0];
+				lead.cd04 = phone;
+				lead.cd07 = schedule;
+				lead.cd08 = 'Web advertisement';
+				lead.cd09 = 'Zillow lead';
+				lead.cd10 = 'No';
+				lead.cd11 = temp5[0];
+
+				console.log(lead);
+
+				lead.save(function(error, lead_results) {
+					if(error) {
+						console.log(error);
+						res.status(500).end();
+					}
+					else {
+						res.status(200).end();
+					}
+				});
+			}
+		});
+
 
 	} // end of 'sendgrid' controller
 
