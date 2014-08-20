@@ -295,10 +295,11 @@ var controller = {
 		// console.log('new phone: ', temp7);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		// Parse out property notes
-		// console.log(req.body.text);
-		var temp4 = temp.split('For Sale: ');
-		var temp5 = temp4[1].split('Listed by:');
-		console.log('Notes: ',temp5[0]);
+		console.log('req.body.text', req.body.text);
+		console.log('tempx: ', tempx);
+		// var temp4 = tempx.split('For Sale: ');
+		// var temp5 = temp4[1].split('Listed by:');
+		// console.log('Notes: ',temp5[0]);
 
 
 		Preference.findOne({}, function(error, pref_results) {
@@ -322,7 +323,7 @@ var controller = {
 				// lead.cd11 = temp5[0];
 				lead.cd11= 'None';
 
-				console.log(lead);
+				// console.log(lead);
 
 				lead.save(function(error, lead_results) {
 					if(error) {
