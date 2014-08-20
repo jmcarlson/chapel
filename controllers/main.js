@@ -281,14 +281,15 @@ var controller = {
 		// console.log('sendGrid: ', req.body.text);
 		// Parse out email and phone
 		var temp = req.body.text;
+		var tempx = req.body.text;
 		var temp2 = temp.split('New Contact');
 		var temp3 = temp2[1].split('is');
 		var emailRegex = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
 		var email = emailRegex.exec(temp3[0]);
 		// console.log('email: ', email);
 
-		console.log(temp);
-		var temp6 = temp.split('<tel:');
+		console.log(tempx);
+		var temp6 = tempx.split('<tel:');
 		var temp7 = temp6[1].split('>');
 		console.log('new phone: ', temp7);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
