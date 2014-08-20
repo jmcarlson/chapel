@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var multiparty = require('connect-multiparty');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var userInputs = require('./models/contacts-user-fields.js');
@@ -16,6 +17,7 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// app.use(require connect-);
 app.get('/crm', controller.index);
 app.post('/write', controller.write);
 app.get('/crm/lead', controller.lead);
@@ -30,7 +32,7 @@ app.post('/preferences', controller.preferences_post);
 app.get('/delivery', controller.delivery);
 app.get('/today', controller.today);
 // sendGrid parse interface
-app.post('/sendgrid', controller.sendgrid);
+app.post('/sendgrid', multiparty(), controller.sendgrid);
 
 // Refactor controller routes
 // app.get('/', controller.index)
