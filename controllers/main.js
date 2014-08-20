@@ -297,7 +297,7 @@ var controller = {
 		// Parse out property notes
 		// console.log('req.body.text', req.body.text);
 		// console.log('tempx: ', tempx);
-		var temp4 = tempx.split('For Sale: ');
+		var temp4 = tempx.split('For\r\nSale: ');
 		console.log('temp4: ', temp4);
 		// var temp5 = temp4[1].split('Listed by:');
 		// console.log('Notes: ',temp5[0]);
