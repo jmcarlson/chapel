@@ -285,6 +285,7 @@ var controller = {
 		var temp3 = temp2[1].split('is');
 		var emailRegex = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
 		var email = emailRegex.exec(temp3[0]);
+		console.log('email: ', email);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		// Parse out property notes
 		// console.log(req.body.text);
