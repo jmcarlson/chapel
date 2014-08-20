@@ -21,7 +21,7 @@ var scheduler = {
 			to: toEmail,
 			from: 'system@refactoru.com',
 			subject: 'Follow up required: ' + lead.cd01 + ' ' + lead.cd02 + ' ' + lead.cd03 + ' ' + lead.cd04,
-			text: lead.cd03 + '<br>' + lead.cd04
+			text: lead.cd03 + '\r\n' + lead.cd04
 			};
 		return newEmail;
 	},
