@@ -300,7 +300,7 @@ var controller = {
 		var temp4 = tempx.split('For\r\nSale: ');
 		// console.log('temp4: ', temp4);
 		var temp5 = temp4[1].split('Listed by:');
-		console.log('Notes: ',temp5[0]);
+		// console.log('Notes: ',temp5[0]);
 
 
 		Preference.findOne({}, function(error, pref_results) {
@@ -321,8 +321,8 @@ var controller = {
 				lead.cd08 = 'Web advertisement';
 				lead.cd09 = 'Zillow lead';
 				lead.cd10 = 'No';
-				// lead.cd11 = temp5[0];
-				lead.cd11= 'None';
+				lead.cd11 = temp5[0];
+				// lead.cd11= 'None';
 
 				// console.log(lead);
 
