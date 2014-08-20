@@ -332,6 +332,22 @@ var controller = {
 						res.status(500).end();
 					}
 					else {
+						for (var i = 0; i < schedule.length; i++) {
+							var newDate = moment({h:00,m:00,s:00,ms:000}).add(schedule[i],'days');
+							var delivery = new Delivery();
+							delivery.lead_id = lead_results._id;
+							delivery.delivery = newDate;
+							delivery.status = 'Waiting';
+							delivery.save(function(error, delivery_results) {
+								if(error) {
+									console.log(error);
+								}
+								// else {
+								// 	console.log('Added email schedule: ', delivery);
+								// }
+							})
+						};
+
 						res.status(200).end();
 					}
 				});
