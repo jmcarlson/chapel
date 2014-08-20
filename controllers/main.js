@@ -297,6 +297,11 @@ var controller = {
 		// Parse out property notes
 		// console.log('req.body.text', req.body.text);
 		// console.log('tempx: ', tempx);
+		// Add robust email support here;
+		//  - forwarding out of gmail will add '\r\n' for spaces
+		//  - forwarding directly will not have
+		console.log('xx1', tempx.indexOf('For\r\nSale: '));
+		console.log('xx2', tempx.indexOf('For Sale: '));
 		var temp4 = tempx.split('For\r\nSale: ');
 		// console.log('temp4: ', temp4);
 		var temp5 = temp4[1].split('Listed by:');
