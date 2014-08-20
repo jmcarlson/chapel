@@ -290,8 +290,9 @@ var controller = {
 
 		// console.log(tempx);
 		var temp6 = tempx.split('You can reach me at: ');
+		console.log(temp6);
 		var temp7 = temp6[1].split('Respond');
-		console.log('new phone: ', temp7);
+		// console.log('new phone: ', temp7);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		// Parse out property notes
 		// console.log(req.body.text);
