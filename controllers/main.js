@@ -296,8 +296,8 @@ var controller = {
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		// Parse out property notes
 		// console.log(req.body.text);
-		var temp4 = temp.split('For Sale: ');
-		var temp5 = temp4[1].split('Listed by:');
+		// var temp4 = temp.split('For Sale: ');
+		// var temp5 = temp4[1].split('Listed by:');
 		// console.log('Notes: ',temp5[0]);
 
 
@@ -319,7 +319,8 @@ var controller = {
 				lead.cd08 = 'Web advertisement';
 				lead.cd09 = 'Zillow lead';
 				lead.cd10 = 'No';
-				lead.cd11 = temp5[0];
+				// lead.cd11 = temp5[0];
+				lead.cd11= 'None';
 
 				console.log(lead);
 
