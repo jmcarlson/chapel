@@ -288,10 +288,10 @@ var controller = {
 		var email = emailRegex.exec(temp3[0]);
 		// console.log('email: ', email);
 
-		console.log(tempx);
-		var temp6 = tempx.split('<tel:');
-		// var temp7 = temp6[1].split('>');
-		console.log('new phone: ', temp6);
+		// console.log(tempx);
+		var temp6 = tempx.split('You can reach me at: ');
+		var temp7 = temp6[1].split('Respond');
+		console.log('new phone: ', temp7);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		// Parse out property notes
 		// console.log(req.body.text);
