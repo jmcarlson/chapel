@@ -301,9 +301,11 @@ var controller = {
 		//  - forwarding out of gmail will add '\r\n' for spaces
 		//  - forwarding directly will not have
 		if(tempx.indexOf('For\r\nSale: ') === -1) {
+			console.log('zz1');
 			var temp4 = tempx.split('For\r\nSale: ');
 		}
 		else {
+			console.log('zz1');
 			var temp4 = tempx.split('For Sale: ');
 		}
 		console.log('xx1', tempx.indexOf('For\r\nSale: '));
