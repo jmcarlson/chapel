@@ -286,30 +286,18 @@ var controller = {
 		var temp3 = temp2[1].split('is');
 		var emailRegex = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
 		var email = emailRegex.exec(temp3[0]);
-		// console.log('email: ', email);
 
-		// console.log(tempx);
-		// var temp6 = tempx.split('You can reach me at: ');
-		// console.log(temp6);
-		// var temp7 = temp6.split('Respond');
-		// console.log('new phone: ', temp7);
 		var phone = temp3[0].replace(email[0],'').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-		// Parse out property notes
-		// console.log('req.body.text', req.body.text);
-		// console.log('tempx: ', tempx);
 		// Add robust email support here;
 		//  - forwarding out of gmail will add '\r\n' for spaces
 		//  - forwarding directly will not have
 		if(tempx.indexOf('For\r\nSale: ') === -1) {
-			console.log('zz1');
 			var temp4 = tempx.split('For Sale: ');
 		}
 		else {
-			console.log('zz1');
 			var temp4 = tempx.split('For\r\nSale: ');
 		}
-		console.log('xx1', tempx.indexOf('For\r\nSale: '));
-		console.log('xx2', tempx.indexOf('For Sale: '));
+
 		// var temp4 = tempx.split('For\r\nSale: ');
 		// console.log('temp4: ', temp4);
 		var temp5 = temp4[1].split('Listed by:');
